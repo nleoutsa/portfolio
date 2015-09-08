@@ -1,40 +1,14 @@
 "use strict";
 
 
-
 // DATA
 var artwork = [
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'a', url: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', url: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', url: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', url: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', url: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'cc', url: 'http://i.imgur.com/WdR9k3Z.jpg'}
+    {title: 'a', small_thumbnail: 'http://i.imgur.com/KuEXstZt.jpg', medium_thumbnail: 'http://i.imgur.com/KuEXstZl.jpg', large_pic: 'http://i.imgur.com/KuEXstZ.jpg'},
+    {title: 'b', small_thumbnail: 'http://i.imgur.com/kfpjNWXt.png', medium_thumbnail: 'http://i.imgur.com/kfpjNWXl.png', large_pic: 'http://i.imgur.com/kfpjNWX.png'},
+    {title: 'c', small_thumbnail: 'http://i.imgur.com/fm3ww0et.jpg', medium_thumbnail: 'http://i.imgur.com/fm3ww0el.jpg', large_pic: 'http://i.imgur.com/fm3ww0e.jpg'},
+    {title: 'aa', small_thumbnail: 'http://i.imgur.com/J0pmOlVt.jpg', medium_thumbnail: 'http://i.imgur.com/J0pmOlVl.jpg', large_pic: 'http://i.imgur.com/J0pmOlV.jpg'},
+    {title: 'bb', small_thumbnail: 'http://i.imgur.com/qBKO2GSt.jpg', medium_thumbnail: 'http://i.imgur.com/qBKO2GSl.jpg', large_pic: 'http://i.imgur.com/qBKO2GS.jpg'},
+    {title: 'cc', small_thumbnail: 'http://i.imgur.com/WdR9k3Zt.jpg', medium_thumbnail: 'http://i.imgur.com/WdR9k3Zl.jpg', large_pic: 'http://i.imgur.com/WdR9k3Z.jpg'}
 ];
 
 
@@ -56,7 +30,6 @@ var smaller_size;
 
 window.onload = function(event) {
 
-    console.log();;
     var num_rows = setRowSize(getWindowWidth().x);
     changeFrameSizes(num_rows)
 
@@ -68,7 +41,7 @@ window.onload = function(event) {
 // resize
 window.onresize = function(event) {
     var num_rows = setRowSize(event.target.outerWidth);
-    console.log(num_rows);
+
     changeFrameSizes(num_rows)
 
 }
@@ -120,14 +93,14 @@ function changeFrameSizes (num_rows) {
         smaller_size = '45%';
     }
 
-    for (var i = 0; i < gallery.childNodes.length; i++) {
-        var child = gallery.childNodes[i];
+    // for (var i = 0; i < gallery.childNodes.length; i++) {
+    //     var child = gallery.childNodes[i];
 
-        child.style.width = normal_size;
-        child.style.marginBottom = "0";
-        child.style.marginLeft = "2.5%";
-        child.style.marginTop = "2.5%";
-    }
+    //     child.style.width = normal_size;
+    //     child.style.marginBottom = "0";
+    //     child.style.marginLeft = "2.5%";
+    //     child.style.marginTop = "2.5%";
+    // }
 
 }
 
@@ -139,10 +112,12 @@ function createFrame (piece) {
 
     frame.style.width = normal_size;
 
-    art_piece.dataset.image_url = piece.url;
+    art_piece.dataset.large_pic = piece.large_pic;
+    art_piece.dataset.medium_thumbnail = piece.medium_thumbnail;
+    art_piece.dataset.image_url = piece.small_thumbnail;
     art_piece.dataset.zoom = 'false';
 
-    art_piece.style.background = 'url(' + piece.url + ')';
+    art_piece.style.background = 'url(' + piece.medium_thumbnail + ')';
     art_piece.style.backgroundSize = 'cover';
 
     frame.appendChild(aspect_force);
@@ -157,13 +132,13 @@ function zoom(node, hidden_array) {
         element.style.margin = 0;
     });
 
-    setTimeout(function() {
-        // get image ratio for zoom
-        var ratio = getImageRatio(node.childNodes[1].dataset.image_url);
+    var ratio = getImageRatio(node.childNodes[1].dataset.image_url);
 
-        node.childNodes[0].style.paddingTop = ratio * 100 + '%';
-        expand(node);
-    }, 0);
+
+    node.childNodes[1].style.background = 'url(' + node.childNodes[1].dataset.large_pic; + ')';
+    node.childNodes[1].style.backgroundSize = 'cover';
+    node.childNodes[0].style.paddingTop = ratio * 100 + '%';
+    node.style.width = zoomed_size;
 }
 
 function unzoom(node, hidden_array) {
@@ -178,9 +153,6 @@ function unzoom(node, hidden_array) {
     node.style.width = normal_size;
 }
 
-function expand(node) {
-    node.style.width = zoomed_size;
-}
 
 
 
@@ -188,54 +160,54 @@ function expand(node) {
 //         EVENT LISTENERS
 //////////////////////////////////////////
 
-addEventListener('mouseover', function(event) {
-    if (event.target.className == 'art_piece') {
+// addEventListener('mouseover', function(event) {
+//     if (event.target.className == 'art_piece') {
 
-        event.target.style.opacity = 1;
+//         event.target.style.opacity = 1;
 
-        if (event.target.dataset.zoom == 'false') {
-            event.target.parentNode.style.width = enlarged_size;
-        }
-
-
-
-        // get index of picture in gallery
-        var index = getIndex(event.target.parentNode)
-
-        var this_row = Math.floor(index / row_width);
+//         if (event.target.dataset.zoom == 'false') {
+//             event.target.parentNode.style.width = enlarged_size;
+//         }
 
 
-        for (var i = 0; i < gallery.childNodes.length; i++) {
-            var child = gallery.childNodes[i];
-            if (child != event.target.parentNode && (this_row == Math.floor(i / row_width))) {
-                child.style.width = smaller_size;
-                child.style.marginBottom = "2%";
 
-            }
-        }
+//         // get index of picture in gallery
+//         var index = getIndex(event.target.parentNode)
 
-    }
-});
-addEventListener('mouseout', function(event) {
-    if (event.target.className == 'art_piece') {
+//         var this_row = Math.floor(index / row_width);
 
-        // get index of picture in gallery
-        var index = getIndex(event.target.parentNode)
 
-        event.target.parentNode.childNodes[0].style.paddingTop = '100%';
+//         for (var i = 0; i < gallery.childNodes.length; i++) {
+//             var child = gallery.childNodes[i];
+//             if (child != event.target.parentNode && (this_row == Math.floor(i / row_width))) {
+//                 child.style.width = smaller_size;
+//                 child.style.marginBottom = "2%";
 
-        event.target.dataset.zoom = 'false';
+//             }
+//         }
 
-        for (var i = 0; i < gallery.childNodes.length; i++) {
-            var child = gallery.childNodes[i];
+//     }
+// });
+// addEventListener('mouseout', function(event) {
+//     if (event.target.className == 'art_piece') {
 
-            child.style.width = normal_size;
-            child.style.marginBottom = "0";
-            child.style.marginLeft = "2.5%";
-            child.style.marginTop = "2.5%";
-        }
-    }
-});
+//         // get index of picture in gallery
+//         var index = getIndex(event.target.parentNode)
+
+//         event.target.parentNode.childNodes[0].style.paddingTop = '100%';
+
+//         event.target.dataset.zoom = 'false';
+
+//         for (var i = 0; i < gallery.childNodes.length; i++) {
+//             var child = gallery.childNodes[i];
+
+//             child.style.width = normal_size;
+//             child.style.marginBottom = "0";
+//             child.style.marginLeft = "2.5%";
+//             child.style.marginTop = "2.5%";
+//         }
+//     }
+// });
 
 
 addEventListener('click', function(event) {
