@@ -27,7 +27,6 @@ var row_width = setRowSize(getWindowWidth().x);
 var zoomed_size;
 var enlarged_size;
 var normal_size;
-var smaller_size;
 
 
 //////////////////////////////////////////
@@ -86,31 +85,19 @@ function changeFrameSizes (num_rows) {
     if (num_rows == 4) {
         zoomed_size = '95%';
         enlarged_size = '25%';
-        normal_size = '22%';
-        smaller_size = '21%';
+        normal_size = '21%';
     }
     else if (num_rows == 3) {
         zoomed_size = '95%';
         enlarged_size = '33%';
         normal_size = '30%';
-        smaller_size = '29%';
     }
     else if (num_rows == 2) {
 
         zoomed_size = '95%';
         enlarged_size = '48.5%';
         normal_size = '47%';
-        smaller_size = '45%';
     }
-
-    // for (var i = 0; i < gallery.childNodes.length; i++) {
-    //     var child = gallery.childNodes[i];
-
-    //     child.style.width = normal_size;
-    //     child.style.marginBottom = "0";
-    //     child.style.marginLeft = "2.5%";
-    //     child.style.marginTop = "2.5%";
-    // }
 
 }
 
@@ -118,8 +105,6 @@ function createFrame (piece) {
     var frame = elt('div', 'frame');
     var art_piece = elt('div', 'art_piece');
     var aspect_force = elt('div', 'aspect_force');
-
-    // frame.style.width = normal_size;
 
     // set data attributes so we can access them elsewhere...
     art_piece.dataset.large_pic = piece.large_pic;
@@ -148,8 +133,8 @@ function zoom(node) {
 
 function unzoom(node) {
     node.childNodes[0].style.paddingTop = '100%';
-
-    node.style.width = normal_size;
+    // set width to empty string so it will be whatever is set in css...
+    node.style.width = "";
 }
 
 
@@ -158,55 +143,6 @@ function unzoom(node) {
 //////////////////////////////////////////
 //         EVENT LISTENERS
 //////////////////////////////////////////
-
-// addEventListener('mouseover', function(event) {
-//     if (event.target.className == 'art_piece') {
-
-//         event.target.style.opacity = 1;
-
-//         if (event.target.dataset.zoom == 'false') {
-//             event.target.parentNode.style.width = enlarged_size;
-//         }
-
-
-
-//         // get index of picture in gallery
-//         var index = getIndex(event.target.parentNode)
-
-//         var this_row = Math.floor(index / row_width);
-
-
-//         for (var i = 0; i < gallery.childNodes.length; i++) {
-//             var child = gallery.childNodes[i];
-//             if (child != event.target.parentNode && (this_row == Math.floor(i / row_width))) {
-//                 child.style.width = smaller_size;
-//                 child.style.marginBottom = "2%";
-
-//             }
-//         }
-
-//     }
-// });
-// addEventListener('mouseout', function(event) {
-//     if (event.target.className == 'art_piece') {
-
-//         // get index of picture in gallery
-//         var index = getIndex(event.target.parentNode)
-
-//         event.target.parentNode.childNodes[0].style.paddingTop = '100%';
-
-//         event.target.dataset.zoom = 'false';
-
-//         for (var i = 0; i < gallery.childNodes.length; i++) {
-//             var child = gallery.childNodes[i];
-
-//             child.style.width = normal_size;
-//             child.style.marginBottom = "0";
-//             child.style.marginLeft = "2.5%";
-//             child.style.marginTop = "2.5%";
-//         }
-//     }
-// });
 
 
 addEventListener('click', function(event) {
