@@ -210,6 +210,7 @@ function unzoom(node) {
 
 
 addEventListener('click', function(event) {
+    alert(event.target.tagName + ", " + event.target.className);
     if (event.target.className == 'art_piece') {
 
         // get index of picture in gallery
