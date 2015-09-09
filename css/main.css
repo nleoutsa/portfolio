@@ -260,6 +260,7 @@ body {
 
     background-color: #001;
 
+    width: 22%;
     position: relative;
     margin-left: 2.5%;
     margin-top: 2.5%;
@@ -313,7 +314,11 @@ body {
     -o-filter:      grayscale(0%);
 */
 
+    width: 24%;
     box-shadow: -3px 3px 12px rgba(0,0,0,1);
+
+    margin-left: 1.5%;
+    margin-top: 1.5%;
 
     cursor: pointer;
 }
@@ -321,6 +326,7 @@ body {
 .frame:hover .art_piece {
     opacity: 1;
 }
+
 
 
 

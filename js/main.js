@@ -119,7 +119,7 @@ function createFrame (piece) {
     var art_piece = elt('div', 'art_piece');
     var aspect_force = elt('div', 'aspect_force');
 
-    frame.style.width = normal_size;
+    // frame.style.width = normal_size;
 
     // set data attributes so we can access them elsewhere...
     art_piece.dataset.large_pic = piece.large_pic;
