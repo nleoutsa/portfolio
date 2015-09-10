@@ -30,8 +30,8 @@ function createFrame (piece) {
 
     // set data attributes so we can access them elsewhere...
 
-    art_piece.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
-    art_piece.dataset.zoom = 'false';
+    frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
+    frame.dataset.zoom = 'false';
 
     if (piece.tags.match(/portraiture/)) {
         art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_2.0,fl_progressive,g_face,w_0.4' + piece.url + ')';
@@ -51,9 +51,9 @@ function createFrame (piece) {
 
 function zoom(node) {
 
-    var ratio = getImageRatio(node.childNodes[1].dataset.large_pic);
+    var ratio = getImageRatio(node.dataset.large_pic);
 
-    node.childNodes[1].style.background = 'url(' + node.childNodes[1].dataset.large_pic; + ')';
+    node.childNodes[1].style.background = 'url(' + node.dataset.large_pic; + ')';
     node.childNodes[1].style.backgroundSize = 'cover';
     node.childNodes[0].style.paddingTop = ratio * 100 + '%';
     node.style.width = zoomed_size;
@@ -63,7 +63,7 @@ function unzoom(node) {
     node.childNodes[0].style.paddingTop = '100%';
     // set width to empty string so it will be whatever is set in css...
     node.style.width = "";
-    node.childNodes[1].dataset.zoom = 'false';
+    node.dataset.zoom = 'false';
 }
 
 
@@ -107,52 +107,53 @@ addEventListener('click', function(event) {
         var index = getIndex(event.target.parentNode)
 
         // zoom
-        if (event.target.dataset.zoom == 'false') {
+        if (event.target.parentNode.dataset.zoom == 'false') {
 
-            unzoom(zoomed_frame);
+            // unzoom(zoomed_frame);
 
-            zoomed_frame = gallery.childNodes[index];
+            // zoomed_frame = gallery.childNodes[index];
 
-            hidden_frames = [];
+            // hidden_frames = [];
 
-            if (index % 4 > 0) {
-                for (var i = (index % 4); i > 0; i--) {
-                    var frame = gallery.childNodes[index - i];
-                    if (frame.nodeType == 1) {
-                        frame.style.width = '0';
-                        hidden_frames.unshift(frame);
-                    }
-                }
-            }
-
-
-            setTimeout(function() {
-                hidden_frames.forEach(function(frame) {
-                    frame.style.width = '';
-                    gallery.insertBefore(frame, zoomed_frame.nextSibling);
-                });
-            }, 600);
-
-            zoom(event.target.parentNode);
+            // if (index % 4 > 0) {
+            //     for (var i = (index % 4); i > 0; i--) {
+            //         var frame = gallery.childNodes[index - i];
+            //         if (frame.nodeType == 1) {
+            //             frame.style.width = '0';
+            //             hidden_frames.unshift(frame);
+            //         }
+            //     }
+            // }
 
 
-            event.target.dataset.zoom = 'true';
+            // setTimeout(function() {
+            //     hidden_frames.forEach(function(frame) {
+            //         frame.style.width = '';
+            //         gallery.insertBefore(frame, zoomed_frame.nextSibling);
+            //     });
+            // }, 600);
+
+            // zoom(event.target.parentNode);
+
+
+            event.target.parentNode.dataset.zoom = 'true';
         }
         // reset positioning
-        else if (event.target.dataset.zoom == 'true') {
+        else if (event.target.parentNode.dataset.zoom == 'true') {
 
-            unzoom(event.target.parentNode);
+            // unzoom(event.target.parentNode);
 
-            hidden_frames.forEach(function (frame) {
-                gallery.insertBefore(frame, event.target.parentNode);
+            // hidden_frames.forEach(function (frame) {
+            //     gallery.insertBefore(frame, event.target.parentNode);
 
-                setTimeout(function() {
+            //     setTimeout(function() {
 
-                    unzoom(frame);
-                }, 10);
+            //         unzoom(frame);
+            //     }, 10);
 
-            });
+            // });
 
+            event.target.parentNode.dataset.zoom = 'false';
         }
     }
 });
