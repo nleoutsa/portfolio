@@ -63,6 +63,7 @@ function unzoom(node) {
     node.childNodes[0].style.paddingTop = '100%';
     // set width to empty string so it will be whatever is set in css...
     node.style.width = "";
+    node.childNodes[1].dataset.zoom = 'false';
 }
 
 
@@ -98,6 +99,7 @@ addEventListener('mouseout', function(event) {
 });
 
 var hidden_frames = [];
+var zoomed_frame = gallery.childNodes[0];
 
 addEventListener('click', function(event) {
     if (event.target.className == 'art_piece') {
@@ -107,28 +109,24 @@ addEventListener('click', function(event) {
         // zoom
         if (event.target.dataset.zoom == 'false') {
 
-            function minimize_number() {
-                if (getWindowWidth().x > 900)
-                    return 4;
-                else if (getWindowWidth().x > 600)
-                    return 3;
-                else
-                    return 2;
-            };
+            unzoom(zoomed_frame);
 
-            console.log(index % 4);
-
-            zoom(event.target.parentNode);
+            zoomed_frame = gallery.childNodes[index];
 
             hidden_frames = [];
 
-            for (var i = index - 1; i > index - minimize_number() && i % 4 >= 0; i--) {
-                var frame = gallery.childNodes[i];
-                if (frame.nodeType == 1) {
-                    frame.style.width = '0%';
-                    hidden_frames.push(frame);
+            if (index % 4 > 0) {
+                for (var i = (index % 4); i > 0; i--) {
+                    var frame = zoomed_frame.previousSibling;
+                    if (frame.nodeType == 1) {
+                        hidden_frames.unshift(frame);
+                        gallery.insertBefore(frame, zoomed_frame.nextSibling);
+                    }
                 }
             }
+
+            zoom(event.target.parentNode);
+
 
             event.target.dataset.zoom = 'true';
         }
@@ -139,10 +137,11 @@ addEventListener('click', function(event) {
 
             hidden_frames.forEach(function (frame) {
                 console.log(frame);
-                frame.style.width = '';
+                // frame.style.width = '';
+                // frame.style.display = 'inline-block';
+                gallery.insertBefore(frame, event.target.parentNode);
             });
 
-            event.target.dataset.zoom = 'false';
         }
     }
 });
