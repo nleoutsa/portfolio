@@ -117,13 +117,21 @@ addEventListener('click', function(event) {
 
             if (index % 4 > 0) {
                 for (var i = (index % 4); i > 0; i--) {
-                    var frame = zoomed_frame.previousSibling;
+                    var frame = gallery.childNodes[index - i];
                     if (frame.nodeType == 1) {
+                        frame.style.width = '0';
                         hidden_frames.unshift(frame);
-                        gallery.insertBefore(frame, zoomed_frame.nextSibling);
                     }
                 }
             }
+
+
+            setTimeout(function() {
+                hidden_frames.forEach(function(frame) {
+                    frame.style.width = '';
+                    gallery.insertBefore(frame, zoomed_frame.nextSibling);
+                });
+            }, 600);
 
             zoom(event.target.parentNode);
 
@@ -136,10 +144,13 @@ addEventListener('click', function(event) {
             unzoom(event.target.parentNode);
 
             hidden_frames.forEach(function (frame) {
-                console.log(frame);
-                // frame.style.width = '';
-                // frame.style.display = 'inline-block';
                 gallery.insertBefore(frame, event.target.parentNode);
+
+                setTimeout(function() {
+
+                    unzoom(frame);
+                }, 10);
+
             });
 
         }
