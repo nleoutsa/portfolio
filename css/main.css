@@ -276,10 +276,6 @@ body {
 
 }
 
-.frame[data-zoom='true'] {
-    width: 95%;
-}
-
 /* make frames have square aspect ratio */
 .aspect_force {
     padding-top: 100%;
@@ -304,37 +300,14 @@ body {
  /*HOVER */
 
 .frame[data-zoom='false']:hover {
-    width: 49%;
-
+    width: 50%;
     top: 0.5%;
     box-shadow: -3px 3px 12px rgba(0,0,0,1);
-
-    margin: 0.5%;
-
+    margin: 0%;
     cursor: pointer;
 }
 
-/*
 
-
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-
-USE DATA-ATTRIBUTES TO CHANGE STYLES INSTEAD OF JAVASCRIPT...
-just change dataset with js and let css handle the rest
-
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-**************************************************************
-
-*/
 
 /*
 *******************************************
@@ -344,12 +317,12 @@ just change dataset with js and let css handle the rest
 
 
 @media screen and (min-width: 600px) {
-
-    .frame[data-zoom='false'] {
-        width: 28%;
+    .frame {
+        width: 30.5%;
     }
     .frame[data-zoom='false']:hover {
-        width: 29%;
+        width: 32%;
+        margin: 0.5%;
     }
 }
 
@@ -380,12 +353,14 @@ just change dataset with js and let css handle the rest
         width: 100%;
     }
 
-    .frame[data-zoom='false'] {
-        width: 22%;
+    .frame {
+        width: 22.25%;
     }
+
     .frame[data-zoom='false']:hover {
         width: 24%;
     }
+
 }
 
 
