@@ -13,7 +13,8 @@ var zoomed_size = '95%';
 //////////////////////////////////////////
 
 project_data.forEach(function(piece) {
-    createFrame(piece);
+    if (piece.url)
+        createFrame(piece);
 });
 
 
@@ -23,9 +24,9 @@ project_data.forEach(function(piece) {
 
 
 function createFrame (piece) {
-    var frame = elt('div', 'frame');
-    var art_piece = elt('div', 'art_piece');
-    var aspect_force = elt('div', 'aspect_force');
+    var frame = elmnt('div', 'frame');
+    var art_piece = elmnt('div', 'art_piece');
+    var aspect_force = elmnt('div', 'aspect_force');
 
     // set data attributes so we can access them elsewhere...
 
@@ -50,7 +51,7 @@ function createFrame (piece) {
 
 function zoom(node) {
 
-    var ratio = getImageRatio(node.childNodes[1].dataset.url);
+    var ratio = getImageRatio(node.childNodes[1].dataset.large_pic);
 
     node.childNodes[1].style.background = 'url(' + node.childNodes[1].dataset.large_pic; + ')';
     node.childNodes[1].style.backgroundSize = 'cover';
@@ -96,17 +97,38 @@ addEventListener('mouseout', function(event) {
     }
 });
 
+var hidden_frames = [];
 
 addEventListener('click', function(event) {
     if (event.target.className == 'art_piece') {
-
         // get index of picture in gallery
         var index = getIndex(event.target.parentNode)
 
         // zoom
         if (event.target.dataset.zoom == 'false') {
 
+            function minimize_number() {
+                if (getWindowWidth().x > 900)
+                    return 4;
+                else if (getWindowWidth().x > 600)
+                    return 3;
+                else
+                    return 2;
+            };
+
+            console.log(index % 4);
+
             zoom(event.target.parentNode);
+
+            hidden_frames = [];
+
+            for (var i = index - 1; i > index - minimize_number() && i % 4 >= 0; i--) {
+                var frame = gallery.childNodes[i];
+                if (frame.nodeType == 1) {
+                    frame.style.width = '0%';
+                    hidden_frames.push(frame);
+                }
+            }
 
             event.target.dataset.zoom = 'true';
         }
@@ -114,6 +136,11 @@ addEventListener('click', function(event) {
         else if (event.target.dataset.zoom == 'true') {
 
             unzoom(event.target.parentNode);
+
+            hidden_frames.forEach(function (frame) {
+                console.log(frame);
+                frame.style.width = '';
+            });
 
             event.target.dataset.zoom = 'false';
         }
@@ -137,7 +164,7 @@ function setVendorPrefix (node, property, value) {
 }
 
 // create element of type "type" with class "className"
-function elt(type, className) {
+function elmnt(type, className) {
     var element = document.createElement(type);
     element.setAttribute('class', className);
     return element;
