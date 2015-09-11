@@ -222,9 +222,11 @@ body {
 
 #menu_container {
     display: table-row;
+    width: 100%;
     box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     background: #222;
     color: #fff;
+    position: fixed;
 }
 #menu {
     list-style: none;
@@ -257,9 +259,7 @@ body {
     height: 100%;
     margin-left: 1.25%;
     padding-top: 1.25%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-
+    margin-top: 53px;
 }
 
 #painting_categories,
@@ -348,8 +348,10 @@ body {
 
     #menu_container {
         display: table-cell;
+        width: 00px;
         height: 100vh;
         vertical-align: top;
+        position: static;
     }
 
     #menu {
@@ -369,6 +371,12 @@ body {
     #gallery_container {
         display: table-cell;
         width: 100%;
+    }
+
+    #gallery {
+        margin-top: 0;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     .frame {

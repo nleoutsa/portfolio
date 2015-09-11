@@ -74,129 +74,121 @@ function unzoom(node) {
 //////////////////////////////////////////
 //         EVENT LISTENERS
 //////////////////////////////////////////
-document.getElementById('title').addEventListener('click', function(event) {
-    this.style.color = 'red';
-});
-
-window.addEventListener('mouseover', function(event) {
-    if (getWindowWidth().x > 600) {
-        if (event.target.className == 'art_piece') {
-
-            for (var i = 0; i < gallery.childNodes.length; i++) {
-                if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
-                    gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
-                }
-                else {
-                   gallery.childNodes[i].childNodes[1].style.opacity = '';
-                }
-            }
-        }
-    }
-});
-
-window.addEventListener('mouseout', function(event) {
-    if (getWindowWidth().x > 600) {
-        if (event.target.className == 'art_piece') {
-
-            for (var i = 0; i < gallery.childNodes.length; i++) {
-                if (gallery.childNodes[i].nodeType == 1) {
-                    gallery.childNodes[i].childNodes[1].style.opacity = '';
-                }
-            }
-        }
-    }
-});
 
 var hidden_frames = [];
 var zoomed_frame = gallery.childNodes[0];
 
-var event_type = window.mobilecheck ? 'touchstart' : 'click';
+var art_pieces = document.getElementsByClassName('art_piece');
+var toggle_switches = document.getElementsByClassName('toggle');
 
-window.addEventListener(event_type, function(event) {
+for (var i = 0; i < art_pieces.length; i++) {
+    art_pieces[i].addEventListener('click', function(event) {click_artpiece(event);}, false);
 
-    if (event.target.className == 'art_piece') {
-        // get index of picture in gallery
-        var index = getIndex(event.target.parentNode)
 
-        var minimize_number = function () {
-            if (getWindowWidth().x > 900)
-                return 4;
-            else if (getWindowWidth().x > 600)
-                return 3;
-            else
-                return 2;
-        }
+    if (getWindowWidth().x > 600) {
+        art_pieces[i].addEventListener('mouseover', function(event) {mouseover_artpiece(event);}, false);
+        art_pieces[i].addEventListener('mouseout', function(event) {mouseout_artpiece(event);}, false);
+    }
+}
 
-        // zoom
-        if (event.target.parentNode.dataset.zoom == 'false') {
+for (var i = 0; i < toggle_switches.length; i++) {
+    toggle_switches[i].addEventListener('click', function(event) {toggleCategory(event);}, false);
+}
 
-            unzoom(zoomed_frame);
+function click_artpiece (event) {
+    // get index of picture in gallery
+    var index = getIndex(event.target.parentNode)
 
-            zoomed_frame = gallery.childNodes[index];
+    var minimize_number = function () {
+        if (getWindowWidth().x > 900)
+            return 4;
+        else if (getWindowWidth().x > 600)
+            return 3;
+        else
+            return 2;
+    }
 
-            hidden_frames = [];
+    // zoom
+    if (event.target.parentNode.dataset.zoom == 'false') {
 
-            if (index % minimize_number() > 0) {
-                for (var i = (index % minimize_number()); i > 0; i--) {
-                    var frame = gallery.childNodes[index - i];
-                    if (frame.nodeType == 1) {
-                        frame.style.width = '0';
-                        frame.style.margin = '0';
-                        hidden_frames.unshift(frame);
-                    }
+        unzoom(zoomed_frame);
+
+        zoomed_frame = gallery.childNodes[index];
+
+        hidden_frames = [];
+
+        if (index % minimize_number() > 0) {
+            for (var i = (index % minimize_number()); i > 0; i--) {
+                var frame = gallery.childNodes[index - i];
+                if (frame.nodeType == 1) {
+                    frame.style.width = '0';
+                    frame.style.margin = '0';
+                    hidden_frames.unshift(frame);
                 }
             }
+        }
 
+        setTimeout(function() {
+            hidden_frames.forEach(function(frame) {
+                frame.style.width = '';
+                frame.style.margin = '';
+                gallery.insertBefore(frame, zoomed_frame.nextSibling);
+            });
+        }, 600);
+
+        zoom(event.target.parentNode);
+    }
+    // reset positioning
+    else if (event.target.parentNode.dataset.zoom == 'true') {
+
+        unzoom(event.target.parentNode);
+
+        hidden_frames.forEach(function (frame) {
+
+            frame.style.width = '0';
+            frame.style.margin = '0';
+
+            gallery.insertBefore(frame, event.target.parentNode);
 
             setTimeout(function() {
-                hidden_frames.forEach(function(frame) {
-                    frame.style.width = '';
-                    frame.style.margin = '';
-                    gallery.insertBefore(frame, zoomed_frame.nextSibling);
-                });
-            }, 600);
+                frame.style.width = '';
+                frame.style.margin = '';
+            }, 10);
 
-            zoom(event.target.parentNode);
+        });
+    }
+}
 
-
+function mouseover_artpiece (event) {
+    for (var i = 0; i < gallery.childNodes.length; i++) {
+        if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
+            gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
         }
-        // reset positioning
-        else if (event.target.parentNode.dataset.zoom == 'true') {
-
-            unzoom(event.target.parentNode);
-
-            hidden_frames.forEach(function (frame) {
-
-                frame.style.width = '0';
-                frame.style.margin = '0';
-
-                gallery.insertBefore(frame, event.target.parentNode);
-
-                setTimeout(function() {
-                    frame.style.width = '';
-                    frame.style.margin = '';
-                }, 10);
-
-            });
+        else {
+           gallery.childNodes[i].childNodes[1].style.opacity = '';
         }
     }
-    else if (event.target.className.match(/toggle/)) {
-        toggleCategory(event.target);
+}
+
+function mouseout_artpiece (event) {
+    for (var i = 0; i < gallery.childNodes.length; i++) {
+        if (gallery.childNodes[i].nodeType == 1) {
+            gallery.childNodes[i].childNodes[1].style.opacity = '';
+        }
     }
-});
+}
 
+function toggleCategory(event) {
 
-function toggleCategory(target) {
+    var tag = event.target.dataset.tag;
 
-    var tag = target.dataset.tag;
-
-    if (tag == 'art_categories' || 'painting_categories') {
-
+    if (tag == 'art_categories' || tag == 'painting_categories') {
         var max_height = tag == 'art_categories' ? '17em' : '10em';
 
         var category = document.getElementById(tag);
 
         var toggle = document.getElementById(tag + '_toggle');
+
         if (toggle.innerHTML == '+') {
             toggle.innerHTML = '-';
             category.style.maxHeight = max_height;
@@ -205,7 +197,6 @@ function toggleCategory(target) {
             toggle.innerHTML = '+';
             category.style.maxHeight = '0';
         }
-        else return false;
     }
 }
 
