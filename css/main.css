@@ -288,9 +288,6 @@ body {
     position: relative;
     margin: 1.25%;
 
-    /* workaround for mobile safari click events not registering */
-    cursor: pointer;
-
     box-shadow: -3px 3px 3px rgba(0,0,0,0.4);
 
     -webkit-transition: all ease 0.5s;
@@ -312,9 +309,6 @@ body {
     left: 0;
     right: 0;
 
-    /* workaround for mobile safari click events not registering */
-    cursor: pointer;
-
     -webkit-transition: all ease 0.6s;
     -moz-transition: all ease 0.6s;
     -o-transition: all ease 0.6s;
@@ -325,12 +319,12 @@ body {
 
  /*HOVER */
 
-/*.frame[data-zoom='false']:hover {
+.frame[data-zoom='false']:hover {
     width: 50%;
     top: 0.5%;
     box-shadow: -3px 3px 12px rgba(0,0,0,1);
     margin: 0%;
-}*/
+}
 
 
 
@@ -345,10 +339,10 @@ body {
     .frame {
         width: 30.5%;
     }
-/*    .frame[data-zoom='false']:hover {
+    .frame[data-zoom='false']:hover {
         width: 32%;
         margin: 0.5%;
-    }*/
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -381,10 +375,10 @@ body {
     .frame {
         width: 22.25%;
     }
-/*
+
     .frame[data-zoom='false']:hover {
         width: 24%;
-    }*/
+    }
 
 }
 
