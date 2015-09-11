@@ -4,7 +4,7 @@ var project_data = [
     {
         'name'          : 'violin',
         'url'           : '/v1441829010/violin.jpg',
-        'pos'           : '55% 0%',
+        'ratio'         : 0.7487,
         'title'         : 'Violin',
         'description'   : 'A fun little experimental vanilla JavaScript platform game with a night-day system and player shadow.',
         'medium'        : 'JavaScript, HTML5, CSS3',
@@ -15,7 +15,7 @@ var project_data = [
     {
         'url'           : '/v1441829009/electronic_life.jpg',
         'name'          : 'electronic_LIFE',
-        'pos'           : '70% 10%',
+        'ratio'         : 0.6275,
         'title'         : 'electronic LIFE',
         'description'   : 'A vanilla JavaScript simulation pitting herbivores, carnivores, and plants against eachother in a game of natural selection. Who will win? Watch populations grow and fall! Witness herds thrive! Mourn the extinction of entire species!',
         'medium'        : 'JavaScript, HTML5, CSS3',
@@ -27,7 +27,7 @@ var project_data = [
         'name'          : 'arbitrage_ed',
         'url'           : '/v1441829009/arbitrage_lesson.jpg',
         'secondary_url' : '/v1441829009/arbitrage_landing.jpg',
-        'pos'           : '0% 0%',
+        'ratio'         : 0.6854,
         'title'         : 'Arbitrage Ed',
         'description'   : 'Arbitrage Ed aims to improve financial literacy through relevant lessons. Short videos let you learn new concepts in minutes, targeted problem sets allow you to test your comprehension, and research tools let you apply what you\'ve learned to real-world data.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, AngularJS, Node.js, MongoDB, Express.js',
@@ -38,7 +38,7 @@ var project_data = [
     {
         'name'          : 'my_old_portfolio',
         'url'           : '/v1441829010/portfolio_screenshot.jpg',
-        'pos'           : '50% 50%',
+        'ratio'         : 0.64,
         'title'         : 'My old portfolio',
         'description'   : 'The last iteration of my portfolio site. A lot of fun to make, but I like to switch things up.',
         'medium'        : 'AngularJS, JavaScript, JQuery, HTML5, CSS3, node.js',
@@ -49,7 +49,7 @@ var project_data = [
     {
         'name'          : 'workable',
         'url'           : '/v1441827304/workable.jpg',
-        'pos'           : '50% 80%',
+        'ratio'         : 0.6863,
         'title'         : 'Workable\'s Offer Letter Generator',
         'description'   : 'Workable\'s Offer Letter Generator allows you to quickly create a professional offer letter to send to prospective employees.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails, PostgreSQL',
@@ -60,7 +60,7 @@ var project_data = [
     {
         'url'           : '/v1441829009/cities.jpg',
         'name'          : 'cities',
-        'pos'           : '70% 10%',
+        'ratio'         : 0.72549,
         'title'         : 'Cities',
         'description'   : 'A pixelated JavaScript drawing game! Choose your colors, create a palette, hold the mouse down and move it around and see what you can create! My drawings always look like cities :)',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3',
@@ -71,7 +71,7 @@ var project_data = [
     {
         'name'          : 'simpletext',
         'url'           : '/v1441829010/simple_text.jpg',
-        'pos'           : '0% 90%',
+        'ratio'         : 0.72549,
         'title'         : 'SimpleText',
         'description'   : 'Send a text message to anyone using SimpleText! A test project and great learning experience using the Twilio API, Datamapper, Sinatra, Heroku, and PostgreSQL.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Twilio, ',
@@ -82,7 +82,7 @@ var project_data = [
     {
         'url'           : '/v1441829009/breeze_thru.jpg',
         'name'          : 'breezethru',
-        'pos'           : '50% 0%',
+        'ratio'         : 0.64928,
         'title'         : 'BreezeThru',
         'description'   : 'The product of a 4 hour idea hack thrown by IdeaLabs\' Tom Hughes. This is an unfinished demo depicting the main functions of BreezeThru -a reservation and event planning app that factors in travel and wait times when finding the right venue for your night on town!',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails',
@@ -93,7 +93,7 @@ var project_data = [
     {
         'name'          : 'horse',
         'url'           : '/v1441830951/horse.jpg',
-        'pos'           : '35% 50%',
+        'ratio'         : 0.74,
         'title'         : 'Horse on Western Massachusetts Farm',
         'description'   : 'Palette Knife Painting, 9\" X 12\"',
         'medium'        : 'Acrylic on Canvas',
@@ -103,7 +103,7 @@ var project_data = [
     {
         'name'          : 'self_portrait_sweatshirt',
         'url'           : '/v1441829010/self_portrait_green.jpg',
-        'pos'           : '60% 0%',
+        'ratio'         : 1.5,
         'title'         : 'Self Portrait in Green',
         'description'   : '24\" X 36\"',
         'medium'        : 'Oil on Canvas',
@@ -113,7 +113,7 @@ var project_data = [
     {
         'name'          : 'stare',
         'url'           : '/v1441828273/stare.jpg',
-        'pos'           : '72% 10%',
+        'ratio'         : 0.545,
         'title'         : 'The Stare',
         'medium'        : 'Digital Painting, Wacom Tablet, Photoshop',
         'date'          : '2014',
@@ -123,7 +123,7 @@ var project_data = [
     {
         'name'          : 'woman_reclining',
         'url'           : '/v1441829010/reclining_woman.jpg',
-        'pos'           : '85% 50%',
+        'ratio'         : 0.65,
         'title'         : 'Woman Reclining',
         'description'   : '18\" X 24\"',
         'medium'        : 'Oil on Canvas',
@@ -133,7 +133,7 @@ var project_data = [
     {
         'name'          : 'ladyagnew',
         'url'           : '/v1441830951/lady_agnew.jpg',
-        'pos'           : '50% 10%',
+        'ratio'         : 1.25316,
         'title'         : 'Lady Agnew of Lochnaw',
         'description'   : 'After John Singer Sargent',
         'medium'        : 'Digital Painting, Ipad, Nomad Brush Stylus, Procreate 2',
@@ -143,7 +143,7 @@ var project_data = [
     {
         'name'          : 'emma_sneakers',
         'url'           : '/v1441829009/emma_sitting.jpg',
-        'pos'           : '60% 80%',
+        'ratio'         : 0.75,
         'title'         : 'Emma Sitting',
         'medium'        : 'Digital Painting, Wacom Tablet, Photoshop',
         'date'          : '2014',
@@ -152,7 +152,7 @@ var project_data = [
     {
         'name'          : 'elephants',
         'url'           : '/v1441829009/elephants.jpg',
-        'pos'           : '26% 40%',
+        'ratio'         : 0.45,
         'title'         : 'Elephants',
         'medium'        : 'Digital Painting, Wacom Tablet, Photoshop',
         'date'          : '2014',
@@ -162,7 +162,7 @@ var project_data = [
     {
         'name'          : 'track',
         'url'           : '/v1441829011/track.jpg',
-        'pos'           : '80% 20%',
+        'ratio'         : 0.7,
         'title'         : 'Track',
         'medium'        : 'Digital Painting, Ipad, Nomad Brush Stylus, Procreate 2',
         'date'          : '2014',
@@ -171,7 +171,7 @@ var project_data = [
     {
         'name'          : 'emma',
         'url'           : '/v1441829010/emma.jpg',
-        'pos'           : '35% 43%',
+        'ratio'         : 1.19,
         'title'         : 'Emma',
         'description'   : '18\" X 24\"',
         'medium'        : 'Oil on Canvas',
@@ -181,7 +181,7 @@ var project_data = [
     {
         'name'          : 'self_portrait_horse',
         'url'           : '/v1441829010/self_portrait_horse.jpg',
-        'pos'           : '40% 100%',
+        'ratio'         : 1.25,
         'title'         : 'Self Portrait',
         'description'   : '18\" X 24\"',
         'medium'        : 'Oil on Canvas',
@@ -191,7 +191,7 @@ var project_data = [
     {
         'name'          : 'dream_catcher_earrings',
         'url'           : '/v1441829009/earring.jpg',
-        'pos'           : '40% 65%',
+        'ratio'         : 1.27,
         'title'         : 'Dream Catcher Earrings',
         'description'   : '18\" X 24\"',
         'medium'        : 'Oil on Canvas',
@@ -201,7 +201,7 @@ var project_data = [
     {
         'name'          : 'sailor',
         'url'           : '/v1441829010/sailor.jpg',
-        'pos'           : '70% 32%',
+        'ratio'         : 0.8,
         'title'         : 'Sailor',
         'description'   : '18\" X 24\"',
         'medium'        : 'Oil on Canvas',
@@ -211,7 +211,7 @@ var project_data = [
     {
         'name'          : 'lizard',
         'url'           : '/v1441830620/lizardsquare.jpg',
-        'pos'           : '25% 20%',
+        'ratio'         : '25% 20%',
         'title'         : 'Lizard',
         'medium'        : '3D Model, Maya, Mudbox',
         'date'          : '2014',
@@ -220,7 +220,7 @@ var project_data = [
     {
         'name'          : 'coins',
         'url'           : '/v1441830620/coins_square.jpg',
-        'pos'           : '12% 80%',
+        'ratio'         : '12% 80%',
         'title'         : 'Coins on Table',
         'medium'        : '3D Model, Maya, Mudbox',
         'date'          : '2014',
@@ -229,7 +229,7 @@ var project_data = [
     {
         'name'          : 'keyboard',
         'url'           : '/v1441830620/keyboard_square.jpg',
-        'pos'           : '90% 80%',
+        'ratio'         : '90% 80%',
         'title'         : 'Keyboard, Monitor, and Computer',
         'medium'        : '3D Model, Maya, Mudbox',
         'date'          : '2014',
@@ -238,7 +238,7 @@ var project_data = [
     {
         'name'          : 'wooden_room',
         'url'           : '/v1441830620/wooden_room.jpg',
-        'pos'           : '100% 80%',
+        'ratio'         : '100% 80%',
         'title'         : 'Wood Room',
         'medium'        : '3D Model, Maya',
         'date'          : '2014',
@@ -248,7 +248,7 @@ var project_data = [
         'name'          : 'table',
         'url'           : '/v1441827303/table.jpg',
         'secondary_url' : '/v1441829011/table_closeup.jpg',
-        'pos'           : '35% 30%',
+        'ratio'         : '35% 30%',
         'title'         : 'Table',
         'medium'        : 'Maple, Mahogony, Oak',
         'date'          : '2013',
@@ -258,7 +258,7 @@ var project_data = [
         'name'          : 'guitar',
         'url'           : '/v1441829010/guitar.jpg',
         'secondary_url' : '/v1441829010/guitar_body.jpg',
-        'pos'           : '30% 60%',
+        'ratio'         : '30% 60%',
         'title'         : 'Guitar',
         'medium'        : 'Maple, Mahogony, Spruce, Dominos, Steel',
         'date'          : '2013',

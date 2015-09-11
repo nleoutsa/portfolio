@@ -30,7 +30,9 @@ function createFrame (piece) {
 
     // set data attributes so we can access them elsewhere...
 
+    frame.dataset.ratio = piece.ratio;
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
+    frame.dataset.small_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.4' + piece.url;
     frame.dataset.zoom = 'false';
 
     if (piece.custom_crop)
@@ -51,9 +53,12 @@ function createFrame (piece) {
 
 function zoom(node) {
 
-    var ratio = getImageRatio(node.dataset.large_pic);
-
-    node.childNodes[1].style.background = 'url(' + node.dataset.large_pic; + ')';
+    var ratio = node.dataset.ratio;
+    if (getWindowWidth().x > 600) {
+        node.childNodes[1].style.background = 'url(' + node.dataset.large_pic; + ')';
+    }
+    else
+        node.childNodes[1].style.background = 'url(' + node.dataset.small_pic; + ')';
     node.childNodes[1].style.backgroundSize = 'cover';
     node.childNodes[0].style.paddingTop = ratio * 100 + '%';
     node.style.width = zoomed_size;
@@ -183,7 +188,7 @@ function toggleCategory(event) {
     var tag = event.target.dataset.tag;
 
     if (tag == 'art_categories' || tag == 'painting_categories') {
-        var max_height = tag == 'art_categories' ? '17em' : '10em';
+        var max_height = tag == 'art_categories' ? '17em' : '9em';
 
         var category = document.getElementById(tag);
 
@@ -232,7 +237,6 @@ function getImageRatio(url){
     // create img from url to grab original ratio
     var img = new Image();
     img.src = url;
-
     return img.height / img.width;
 }
 
