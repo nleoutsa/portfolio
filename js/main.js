@@ -74,6 +74,9 @@ function unzoom(node) {
 //////////////////////////////////////////
 //         EVENT LISTENERS
 //////////////////////////////////////////
+document.getElementById('title').addEventListener('click', function(event) {
+    this.style.color = 'red';
+});
 
 addEventListener('mouseover', function(event) {
     if (event.target.className == 'art_piece') {
