@@ -104,17 +104,23 @@ function zoom(node) {
 
     if (getWindowWidth().x > 600) {
         node.childNodes[1].style.background = 'url(' + node.dataset.large_pic + ')';
+
+        setTimeout(function() {
+            info_section = createInfoSection(node);
+            gallery.insertBefore(info_section, node);
+        }, 600);
     }
     else {
         node.childNodes[1].style.background = 'url(' + node.dataset.small_pic + ')';
+
+        info_section = createInfoSection(node);
+        gallery.insertBefore(info_section, node);
     }
 
     node.childNodes[1].style.backgroundSize = 'cover';
     node.childNodes[0].style.paddingTop = ratio * 100 + '%';
     node.style.width = zoomed_size;
 
-    info_section = createInfoSection(node);
-    gallery.insertBefore(info_section, node);
 
     node.dataset.zoom = 'true';
 }
