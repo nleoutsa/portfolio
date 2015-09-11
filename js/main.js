@@ -108,7 +108,11 @@ function zoom(node) {
         setTimeout(function() {
             info_section = createInfoSection(node);
             gallery.insertBefore(info_section, node);
-        }, 600);
+            setTimeout(function() {
+                info_section.style.maxHeight = '15em';
+            }, 10);
+
+        }, 500);
     }
     else {
         node.childNodes[1].style.background = 'url(' + node.dataset.small_pic + ')';
@@ -120,7 +124,6 @@ function zoom(node) {
     node.childNodes[1].style.backgroundSize = 'cover';
     node.childNodes[0].style.paddingTop = ratio * 100 + '%';
     node.style.width = zoomed_size;
-
 
     node.dataset.zoom = 'true';
 }
