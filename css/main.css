@@ -227,6 +227,7 @@ body {
     background: #222;
     color: #fff;
     position: fixed;
+    z-index: 999;
 }
 #menu {
     list-style: none;
