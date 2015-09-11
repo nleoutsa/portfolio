@@ -84,7 +84,7 @@ var project_data = [
         'name'          : 'breezethru',
         'ratio'         : 0.64928,
         'title'         : 'BreezeThru',
-        'description'   : 'The product of a 4 hour idea hack thrown by IdeaLabs\' Tom Hughes. This is an unfinished demo depicting the main functions of BreezeThru -a reservation and event planning app that factors in travel and wait times when finding the right venue for your night on town!',
+        'description'   : 'The product of a 4 hour idea hack thrown by IdeaLabs\' Tom Hughes. This is a very basic demo depicting the main functions of BreezeThru -a reservation and event planning app that factors in travel and wait times when finding the right venue for your night on town!',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails',
         'redirect'      : 'https://breezethru.herokuapp.com/',
         'date'          : '2015',

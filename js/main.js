@@ -8,6 +8,13 @@ var gallery = document.getElementById('gallery');
 var zoomed_size = '96.5%';
 
 
+var hidden_frames = [];
+var zoomed_frame = gallery.childNodes[0];
+var info_section;
+
+var art_pieces = document.getElementsByClassName('art_piece');
+var toggle_switches = document.getElementsByClassName('toggle');
+
 //////////////////////////////////////////
 //         FUNCTION CALLS
 //////////////////////////////////////////
@@ -16,7 +23,6 @@ project_data.forEach(function(piece) {
     if (piece.url)
         createFrame(piece);
 });
-
 
 //////////////////////////////////////////
 //         FUNCTIONS
@@ -28,21 +34,31 @@ function createFrame (piece) {
     var art_piece = elmnt('div', 'art_piece');
     var aspect_force = elmnt('div', 'aspect_force');
 
-    // set data attributes so we can access them elsewhere...
 
-    frame.dataset.ratio = piece.ratio;
+    var thumbnail;
+
+
+    // set data attributes so we can access them elsewhere...
+    frame.dataset.ratio = piece.ratio || 1;
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
     frame.dataset.small_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.4' + piece.url;
     frame.dataset.zoom = 'false';
 
+    frame.dataset.title = piece.title || '';
+    frame.dataset.description = piece.description || '';
+    frame.dataset.medium = piece.medium || '';
+    frame.dataset.redirect = piece.redirect || '';
+    frame.dataset.date = piece.date || '';
+
     if (piece.custom_crop)
-            art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/' + piece.custom_crop + piece.url + ')';
+        thumbnail = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/' + piece.custom_crop + piece.url + ')';
     else if (piece.tags.match(/portraiture/)) {
-        art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_2.0,fl_progressive,g_face,w_0.4' + piece.url + ')';
+        thumbnail = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_2.0,fl_progressive,g_face,w_0.4' + piece.url + ')';
     }
     else
-        art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_4.0,g_center,w_400' + piece.url + ')';
+        thumbnail = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_4.0,g_center,w_400' + piece.url + ')';
 
+    art_piece.style.background = thumbnail;
     art_piece.style.backgroundSize = 'cover';
 
     frame.appendChild(aspect_force);
@@ -51,56 +67,90 @@ function createFrame (piece) {
     gallery.appendChild(frame);
 }
 
+function createInfoSection(node) {
+    var info = elmnt('div', 'info');
+
+    var title = elmnt('p', 'title');
+    title.innerHTML = node.dataset.title;
+
+    var description = elmnt('p', 'description');
+    description.innerHTML = node.dataset.description;
+
+    var medium = elmnt('p', 'medium');
+    medium.innerHTML = node.dataset.medium;
+
+    var redirect = elmnt('a', 'redirect');
+    redirect.innerHTML = node.dataset.redirect;
+    redirect.href = node.dataset.redirect;
+
+    var date = elmnt('p', 'date');
+    date.innerHTML = node.dataset.date;
+
+    info.appendChild(title);
+    info.appendChild(medium);
+    info.appendChild(description);
+    info.appendChild(date);
+    info.appendChild(redirect);
+
+    return info;
+}
+
 function zoom(node) {
+    console.log("zoom: " + node.dataset.title);
 
     var ratio = node.dataset.ratio;
+
     if (getWindowWidth().x > 600) {
-        node.childNodes[1].style.background = 'url(' + node.dataset.large_pic; + ')';
+        node.childNodes[1].style.background = 'url(' + node.dataset.large_pic + ')';
     }
-    else
-        node.childNodes[1].style.background = 'url(' + node.dataset.small_pic; + ')';
+    else {
+        node.childNodes[1].style.background = 'url(' + node.dataset.small_pic + ')';
+    }
+
     node.childNodes[1].style.backgroundSize = 'cover';
     node.childNodes[0].style.paddingTop = ratio * 100 + '%';
     node.style.width = zoomed_size;
+
+    info_section = createInfoSection(node);
+    gallery.insertBefore(info_section, node);
 
     node.dataset.zoom = 'true';
 }
 
 function unzoom(node) {
-    node.childNodes[0].style.paddingTop = '100%';
+
+    info_section = null;
+    node.childNodes[0].style.paddingTop = '';
     // set width to empty string so it will be whatever is set in css...
     node.style.width = '';
+
     node.dataset.zoom = 'false';
 }
-
-
 
 
 //////////////////////////////////////////
 //         EVENT LISTENERS
 //////////////////////////////////////////
 
-var hidden_frames = [];
-var zoomed_frame = gallery.childNodes[0];
-
-var art_pieces = document.getElementsByClassName('art_piece');
-var toggle_switches = document.getElementsByClassName('toggle');
-
+// add event listeners to art_pieces
 for (var i = 0; i < art_pieces.length; i++) {
     art_pieces[i].addEventListener('click', function(event) {click_artpiece(event);}, false);
-
-
     if (getWindowWidth().x > 600) {
         art_pieces[i].addEventListener('mouseover', function(event) {mouseover_artpiece(event);}, false);
         art_pieces[i].addEventListener('mouseout', function(event) {mouseout_artpiece(event);}, false);
     }
 }
 
+// add event listeners to toggle_switches
 for (var i = 0; i < toggle_switches.length; i++) {
     toggle_switches[i].addEventListener('click', function(event) {toggleCategory(event);}, false);
 }
 
 function click_artpiece (event) {
+
+    if (info_section) {
+        gallery.removeChild(info_section);
+    }
     // get index of picture in gallery
     var index = getIndex(event.target.parentNode)
 
@@ -116,7 +166,8 @@ function click_artpiece (event) {
     // zoom
     if (event.target.parentNode.dataset.zoom == 'false') {
 
-        unzoom(zoomed_frame);
+        if (zoomed_frame)
+            unzoom(zoomed_frame);
 
         zoomed_frame = gallery.childNodes[index];
 
