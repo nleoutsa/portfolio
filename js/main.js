@@ -75,30 +75,30 @@ function unzoom(node) {
 //         EVENT LISTENERS
 //////////////////////////////////////////
 
-// addEventListener('mouseover', function(event) {
-//     if (event.target.className == 'art_piece') {
+addEventListener('mouseover', function(event) {
+    if (event.target.className == 'art_piece') {
 
-//         for (var i = 0; i < gallery.childNodes.length; i++) {
-//             if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
-//                 gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
-//             }
-//             else {
-//                gallery.childNodes[i].childNodes[1].style.opacity = '';
-//             }
-//         }
-//     }
-// });
+        for (var i = 0; i < gallery.childNodes.length; i++) {
+            if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
+                gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
+            }
+            else {
+               gallery.childNodes[i].childNodes[1].style.opacity = '';
+            }
+        }
+    }
+});
 
-// addEventListener('mouseout', function(event) {
-//     if (event.target.className == 'art_piece') {
+addEventListener('mouseout', function(event) {
+    if (event.target.className == 'art_piece') {
 
-//         for (var i = 0; i < gallery.childNodes.length; i++) {
-//             if (gallery.childNodes[i].nodeType == 1) {
-//                 gallery.childNodes[i].childNodes[1].style.opacity = '';
-//             }
-//         }
-//     }
-// });
+        for (var i = 0; i < gallery.childNodes.length; i++) {
+            if (gallery.childNodes[i].nodeType == 1) {
+                gallery.childNodes[i].childNodes[1].style.opacity = '';
+            }
+        }
+    }
+});
 
 var hidden_frames = [];
 var zoomed_frame = gallery.childNodes[0];
@@ -106,6 +106,10 @@ var zoomed_frame = gallery.childNodes[0];
 var event_type = window.mobilecheck ? 'touchstart' : 'click';
 
 addEventListener(event_type, function(event) {
+
+    console.log(event);
+    alert(event.target.className + ", " + event.type);
+
     if (event.target.className == 'art_piece') {
         // get index of picture in gallery
         var index = getIndex(event.target.parentNode)

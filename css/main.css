@@ -319,12 +319,12 @@ body {
 
  /*HOVER */
 
-/*.frame[data-zoom='false']:hover {
+.frame[data-zoom='false']:hover {
     width: 50%;
     top: 0.5%;
     box-shadow: -3px 3px 12px rgba(0,0,0,1);
     margin: 0%;
-}*/
+}
 
 
 
@@ -339,10 +339,10 @@ body {
     .frame {
         width: 30.5%;
     }
-    /*.frame[data-zoom='false']:hover {
+    .frame[data-zoom='false']:hover {
         width: 32%;
         margin: 0.5%;
-    }*/
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -376,9 +376,9 @@ body {
         width: 22.25%;
     }
 
-    /*.frame[data-zoom='false']:hover {
+    .frame[data-zoom='false']:hover {
         width: 24%;
-    }*/
+    }
 
 }
 
