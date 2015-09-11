@@ -79,24 +79,26 @@ function createInfoSection(node) {
     var medium = elmnt('p', 'medium');
     medium.innerHTML = node.dataset.medium;
 
+    var link_p = elmnt('p', 'link_p');
     var redirect = elmnt('a', 'redirect');
     redirect.innerHTML = node.dataset.redirect;
     redirect.href = node.dataset.redirect;
+    redirect.target = '_blank';
+    link_p.appendChild(redirect);
 
     var date = elmnt('p', 'date');
     date.innerHTML = node.dataset.date;
 
     info.appendChild(title);
+    info.appendChild(link_p);
     info.appendChild(medium);
     info.appendChild(description);
     info.appendChild(date);
-    info.appendChild(redirect);
 
     return info;
 }
 
 function zoom(node) {
-    console.log("zoom: " + node.dataset.title);
 
     var ratio = node.dataset.ratio;
 
@@ -217,7 +219,9 @@ function click_artpiece (event) {
 
 function mouseover_artpiece (event) {
     for (var i = 0; i < gallery.childNodes.length; i++) {
-        if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
+        if (    gallery.childNodes[i].nodeType == 1
+            &&  gallery.childNodes[i] != event.target.parentNode
+            &&  gallery.childNodes[i].className != 'info') {
             gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
         }
         else {

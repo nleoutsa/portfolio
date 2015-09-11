@@ -9,7 +9,7 @@ var project_data = [
         'description'   : 'A fun little experimental vanilla JavaScript platform game with a night-day system and player shadow.',
         'medium'        : 'JavaScript, HTML5, CSS3',
         'redirect'      : 'http://violin.netlify.com/',
-        'date'          : '09 2015',
+        'date'          : 'September 2015',
         'tags'          : 'web'
     },
     {
@@ -20,7 +20,7 @@ var project_data = [
         'description'   : 'A vanilla JavaScript simulation pitting herbivores, carnivores, and plants against eachother in a game of natural selection. Who will win? Watch populations grow and fall! Witness herds thrive! Mourn the extinction of entire species!',
         'medium'        : 'JavaScript, HTML5, CSS3',
         'redirect'      : 'https://electronic-life.bitballoon.com',
-        'date'          : '2015',
+        'date'          : 'August 2015',
         'tags'          : 'web'
     },
     {
@@ -32,7 +32,7 @@ var project_data = [
         'description'   : 'Arbitrage Ed aims to improve financial literacy through relevant lessons. Short videos let you learn new concepts in minutes, targeted problem sets allow you to test your comprehension, and research tools let you apply what you\'ve learned to real-world data.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, AngularJS, Node.js, MongoDB, Express.js',
         'redirect'      : 'http://arbitrageed.com',
-        'date'          : '2015',
+        'date'          : 'March - August 2015',
         'tags'          : 'web'
     },
     {
@@ -42,7 +42,7 @@ var project_data = [
         'title'         : 'My old portfolio',
         'description'   : 'The last iteration of my portfolio site. A lot of fun to make, but I like to switch things up.',
         'medium'        : 'AngularJS, JavaScript, JQuery, HTML5, CSS3, node.js',
-        'redirect'      : 'https://maxwellmarlowe.herokuapp.com/',
+        'redirect'      : 'maxwellmarlowe.herokuapp.com/',
         'date'          : '2015',
         'tags'          : 'web'
     },
@@ -54,7 +54,7 @@ var project_data = [
         'description'   : 'Workable\'s Offer Letter Generator allows you to quickly create a professional offer letter to send to prospective employees.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails, PostgreSQL',
         'redirect'      : 'https://workable-app.herokuapp.com/',
-        'date'          : '2015',
+        'date'          : 'February - April 2015',
         'tags'          : 'web'
     },
     {
@@ -87,7 +87,7 @@ var project_data = [
         'description'   : 'The product of a 4 hour idea hack thrown by IdeaLabs\' Tom Hughes. This is a very basic demo depicting the main functions of BreezeThru -a reservation and event planning app that factors in travel and wait times when finding the right venue for your night on town!',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails',
         'redirect'      : 'https://breezethru.herokuapp.com/',
-        'date'          : '2015',
+        'date'          : 'March 2015',
         'tags'          : 'web'
     },
     {
@@ -114,7 +114,7 @@ var project_data = [
         'name'          : 'stare',
         'url'           : '/v1441828273/stare.jpg',
         'ratio'         : 0.545,
-        'title'         : 'The Stare',
+        'title'         : 'Stare',
         'medium'        : 'Digital Painting, Wacom Tablet, Photoshop',
         'date'          : '2014',
         'custom_crop'   : 'ar_1,c_crop,dpr_3.0,g_east,h_400,w_400',

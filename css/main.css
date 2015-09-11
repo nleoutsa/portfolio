@@ -224,7 +224,13 @@ body {
     display: table-row;
     width: 100%;
     box-shadow: 0 3px 5px rgba(0,0,0,0.5);
-    background: #222;
+
+    background-color: #222;
+    /*background-image: -webkit-linear-gradient(top, #333, #111);*/
+    /*background-image:    -moz-linear-gradient(top, #333, #111);*/
+    /*background-image:      -o-linear-gradient(top, #333, #111);*/
+    /*background-image:         linear-gradient(to bottom, #333, #111);*/
+
     color: #fff;
     position: fixed;
     z-index: 999;
@@ -233,8 +239,8 @@ body {
     list-style: none;
     margin: 0;
     display: none;
-    background: #333;
 
+    background: #444;
 }
 #menu li {
     margin: 1em;
@@ -243,11 +249,31 @@ body {
 
 #site_title {
     text-align: center;
-    font-size: 2em;
     line-height: 53px;
+    font-size: 1.6em;
     height: 53px;
     box-shadow: 3px 0 5px rgba(0,0,0,0.5);
-
+}
+.name_title {
+    display: none;
+}
+#site_title .middle_names {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: max-height ease 1.2s;
+    -moz-transition: max-height ease 1.2s;
+    transition: max-height ease 1.2s;
+}
+#site_title:hover .middle_names {
+    max-height: 1em;
+}
+#job_title {
+    font-size: 0.8em;
+    padding-top: 1em;
+}
+#designer_title {
+    font-size: 0.8em;
+    display: none;
 }
 
 #gallery_container {
@@ -308,7 +334,13 @@ body {
 
 .info {
     position: relative;
-    background: #F3D9B1;
+
+    background-color: #e0e1f5;
+    background-image: -webkit-linear-gradient(top, #efefef, #fff);
+    background-image:    -moz-linear-gradient(top, #efefef, #fff);
+    background-image:      -o-linear-gradient(top, #efefef, #fff);
+    background-image:         linear-gradient(to bottom, #efefef, #fff);
+
     color: #222;
     padding: 1em;
 
@@ -322,12 +354,23 @@ body {
     margin-bottom: 1em;
 }
 
-a:link,
-a:visited {
-    color: #fff;
+.info p:first-child {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-bottom: 0.6em;
 }
-a:hover {
-    color: #ccf
+.link_p {
+    text-align: center;
+}
+.info p a:link,
+.info p a:visited {
+    color: #4ac;
+    text-decoration: none;
+    margin-bottom: 1em;
+}
+.info p a:hover {
+    font-weight: bold;
 }
 
 
@@ -383,9 +426,20 @@ a:hover {
         text-align: center;
         height: auto;
         line-height: 1em;
-        padding: 1em 0;
+        padding: 1em;
         width: 300px;
+    }
+    #site_title span {
+        display: block;
+    }
+    span#designer_title,
+    span#job_title {
 
+        display: inline-block;
+    }
+    span#initials_title {
+        display: none;
+        /*visibility: hidden;*/
     }
 
     #gallery_container {
