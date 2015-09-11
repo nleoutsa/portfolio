@@ -298,7 +298,8 @@ body {
     transition: max-height ease 0.6s;
 }
 
-.tag {
+.tag,
+.toggle {
     cursor: pointer;
 }
 .toggle span:last-child {

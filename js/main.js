@@ -9,11 +9,13 @@ var zoomed_size = '96.5%';
 
 
 var hidden_frames = [];
+var unselected_frames = [];
 var zoomed_frame = gallery.childNodes[0];
 var info_section;
 
 var art_pieces = document.getElementsByClassName('art_piece');
 var toggle_switches = document.getElementsByClassName('toggle');
+var tag_buttons = document.getElementsByClassName('tag');
 
 //////////////////////////////////////////
 //         FUNCTION CALLS
@@ -43,6 +45,8 @@ function createFrame (piece) {
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
     frame.dataset.small_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.4' + piece.url;
     frame.dataset.zoom = 'false';
+
+    frame.dataset.tags = piece.tags || '';
 
     frame.dataset.title = piece.title || '';
     frame.dataset.description = piece.description || '';
@@ -157,6 +161,11 @@ for (var i = 0; i < toggle_switches.length; i++) {
     toggle_switches[i].addEventListener('click', function(event) {toggleCategory(event);}, false);
 }
 
+// add event listeners to toggle_switches
+for (var i = 0; i < tag_buttons.length; i++) {
+    tag_buttons[i].addEventListener('click', function(event) {showCategory(event);}, false);
+}
+
 function click_artpiece (event) {
 
     if (info_section) {
@@ -247,7 +256,7 @@ function mouseout_artpiece (event) {
     }
 }
 
-function toggleCategory(event) {
+function toggleCategory (event) {
 
     var tag = event.target.dataset.tag;
 
@@ -269,7 +278,41 @@ function toggleCategory(event) {
     }
 }
 
+function showCategory (event) {
+    var tag = event.target.dataset.tag;
 
+    // unselected_frames.forEach(function (frame) {
+
+    //     frame.style.width = '0';
+    //     frame.style.margin = '0';
+
+    //     gallery.appendChild(frame);
+
+    //     setTimeout(function() {
+    //         frame.style.width = '';
+    //         frame.style.margin = '';
+    //     }, 10);
+
+    // });
+
+    for (var i = 0; i < gallery.childNodes.length; i++) {
+
+        var child = gallery.childNodes[i];
+
+        if (child.className == 'frame' && child.dataset.tags.match(new RegExp(tag)) == null) {
+            unselected_frames.unshift(child);
+            child.style.width = 0;
+            child.style.margin = 0;
+            // setTimeout(function() {
+            //     gallery.removeChild(child);
+            // }, 500);
+        }
+        else {
+            child.style.width = '';
+            child.style.margin = '';
+        }
+    }
+}
 
 //////////////////////////////////////////
 //         HELPER FUNCTIONS
