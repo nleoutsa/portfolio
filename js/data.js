@@ -117,6 +117,7 @@ var project_data = [
         'title'         : 'The Stare',
         'medium'        : 'Digital Painting, Wacom Tablet, Photoshop',
         'date'          : '2014',
+        'custom_crop'   : 'ar_1,c_crop,dpr_3.0,g_east,h_400,w_400',
         'tags'          : 'art, painting, digital, photoshop, portraiture'
     },
     {

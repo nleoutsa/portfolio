@@ -33,11 +33,11 @@ function createFrame (piece) {
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
     frame.dataset.zoom = 'false';
 
-    if (piece.tags.match(/portraiture/)) {
+    if (piece.custom_crop)
+            art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/' + piece.custom_crop + piece.url + ')';
+    else if (piece.tags.match(/portraiture/)) {
         art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_2.0,fl_progressive,g_face,w_0.4' + piece.url + ')';
     }
-    else if (piece.custom_crop)
-        art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/' + piece.custom_crop + piece.url + ')';
     else
         art_piece.style.background = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/ar_1,c_crop,dpr_4.0,g_center,w_400' + piece.url + ')';
 
@@ -161,10 +161,34 @@ addEventListener('click', function(event) {
             });
         }
     }
+    else if (event.target.className.match(/toggle/)) {
+        toggleCategory(event.target);
+    }
 });
 
 
+function toggleCategory(target) {
 
+    var tag = target.dataset.tag;
+
+    if (tag == 'art_categories' || 'painting_categories') {
+
+        var max_height = tag == 'art_categories' ? '17em' : '10em';
+
+        var category = document.getElementById(tag);
+
+        var toggle = document.getElementById(tag + '_toggle');
+        if (toggle.innerHTML == '+') {
+            toggle.innerHTML = '-';
+            category.style.maxHeight = max_height;
+        }
+        else if (toggle.innerHTML == '-') {
+            toggle.innerHTML = '+';
+            category.style.maxHeight = '0';
+        }
+        else return false;
+    }
+}
 
 
 

@@ -18,13 +18,40 @@
             <p id="stats"></p>
             <ul id="menu">
                 <li>
-                    <p>Web Development &amp; Design</p>
+                    <p class='tag' data-tag='web'>Web Development &amp; Design</p>
+                </li>
+
+                <li>
+                    <p class='tag toggle' data-tag="art_categories"><span class='tag' data-tag='art'>Art</span> <span id='art_categories_toggle' class='tag toggle' data-tag="art_categories">+</span></p>
+
+                    <ul id='art_categories'>
+                        <li>
+                            <p class='tag toggle' data-tag="painting_categories"><span class='tag' data-tag='paintings'>Paintings</span> <span id='painting_categories_toggle' class='tag toggle' data-tag="painting_categories">+</span></p>
+                            <ul id='painting_categories'>
+                                <li>
+                                    <p class='tag' data-tag='oil'>Oil</p>
+                                </li>
+                                <li>
+                                    <p class='tag' data-tag='acrylic'>Acrylic</p>
+                                </li>
+                                <li>
+                                    <p class='tag' data-tag='digital'>Digital</p>
+                                </li>
+                                <li>
+                                    <p class='tag' data-tag='portraiture'>Portraits</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class='tag' data-tag='woodwork'>Woodwork</p>
+                        </li>
+                        <li>
+                            <p class='tag' data-tag='3D'>3D</p>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <p>Art</p>
-                </li>
-                <li>
-                    <p>About Me</p>
+                    <p class='tag' data-tag='about'>About Me</p>
                 </li>
             </ul>
         </section>
