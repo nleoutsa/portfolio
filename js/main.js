@@ -281,31 +281,13 @@ function toggleCategory (event) {
 function showCategory (event) {
     var tag = event.target.dataset.tag;
 
-    // unselected_frames.forEach(function (frame) {
-
-    //     frame.style.width = '0';
-    //     frame.style.margin = '0';
-
-    //     gallery.appendChild(frame);
-
-    //     setTimeout(function() {
-    //         frame.style.width = '';
-    //         frame.style.margin = '';
-    //     }, 10);
-
-    // });
-
     for (var i = 0; i < gallery.childNodes.length; i++) {
 
         var child = gallery.childNodes[i];
 
         if (child.className == 'frame' && child.dataset.tags.match(new RegExp(tag)) == null) {
-            unselected_frames.unshift(child);
             child.style.width = 0;
             child.style.margin = 0;
-            // setTimeout(function() {
-            //     gallery.removeChild(child);
-            // }, 500);
         }
         else {
             child.style.width = '';
