@@ -9,6 +9,7 @@ var project_data = [
         'description'   : 'A fun little experimental vanilla JavaScript platform game with a night-day system and player shadow.',
         'medium'        : 'JavaScript, HTML5, CSS3',
         'redirect'      : 'http://violin.netlify.com/',
+        'github'        : 'https://github.com/nleoutsa/violin',
         'date'          : 'September 2015',
         'tags'          : 'web'
     },
@@ -20,6 +21,7 @@ var project_data = [
         'description'   : 'A vanilla JavaScript simulation pitting herbivores, carnivores, and plants against eachother in a game of natural selection. Who will win? Watch populations grow and fall! Witness herds thrive! Mourn the extinction of entire species!',
         'medium'        : 'JavaScript, HTML5, CSS3',
         'redirect'      : 'https://electronic-life.bitballoon.com',
+        'github'        : 'https://github.com/nleoutsa/electronicLIFE',
         'date'          : 'August 2015',
         'tags'          : 'web'
     },
@@ -32,6 +34,7 @@ var project_data = [
         'description'   : 'Arbitrage Ed aims to improve financial literacy through relevant lessons. Short videos let you learn new concepts in minutes, targeted problem sets allow you to test your comprehension, and research tools let you apply what you\'ve learned to real-world data.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, AngularJS, Node.js, MongoDB, Express.js',
         'redirect'      : 'http://arbitrageed.com',
+        'github'        : 'https://github.com/nleoutsa/',
         'date'          : 'March - August 2015',
         'tags'          : 'web'
     },
@@ -43,6 +46,7 @@ var project_data = [
         'description'   : 'The last iteration of my portfolio site. A lot of fun to make, but I like to switch things up.',
         'medium'        : 'AngularJS, JavaScript, JQuery, HTML5, CSS3, node.js',
         'redirect'      : 'maxwellmarlowe.herokuapp.com/',
+        'github'        : 'https://github.com/nleoutsa/maxwellmarlowe',
         'date'          : '2015',
         'tags'          : 'web'
     },
@@ -54,6 +58,7 @@ var project_data = [
         'description'   : 'Workable\'s Offer Letter Generator allows you to quickly create a professional offer letter to send to prospective employees.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Ruby, Rails, PostgreSQL',
         'redirect'      : 'https://workable-app.herokuapp.com/',
+        'github'        : 'https://github.com/nleoutsa/workable_app',
         'date'          : 'February - April 2015',
         'tags'          : 'web'
     },
@@ -65,6 +70,7 @@ var project_data = [
         'description'   : 'A pixelated JavaScript drawing game! Choose your colors, create a palette, hold the mouse down and move it around and see what you can create! My drawings always look like cities :)',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3',
         'redirect'      : 'https://cities.bitballoon.com',
+        'github'        : 'https://github.com/nleoutsa/cities',
         'date'          : '2014',
         'tags'          : 'web'
     },
@@ -75,6 +81,7 @@ var project_data = [
         'title'         : 'SimpleText',
         'description'   : 'Send a text message to anyone using SimpleText! A test project and great learning experience using the Twilio API, Datamapper, Sinatra, Heroku, and PostgreSQL.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Twilio, ',
+        'github'        : 'https://github.com/nleoutsa/simpleText',
         'redirect'      : 'https://morning-retreat-6114.herokuapp.com/',
         'date'          : '2014',
         'tags'          : 'web'

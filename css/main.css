@@ -336,12 +336,12 @@ body {
 .info {
     position: relative;
 
-    background-color: #e0e1f5;
+    /*background-color: #e0e1f5;
     background-image: -webkit-linear-gradient(top, #efefef, #fff);
     background-image:    -moz-linear-gradient(top, #efefef, #fff);
     background-image:      -o-linear-gradient(top, #efefef, #fff);
     background-image:         linear-gradient(to bottom, #efefef, #fff);
-
+*/
     color: #222;
     padding: 1em;
 

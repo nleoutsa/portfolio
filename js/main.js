@@ -45,6 +45,7 @@ function createFrame (piece) {
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
     frame.dataset.small_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.4' + piece.url;
     frame.dataset.zoom = 'false';
+    frame.dataset.github = piece.github || '';
 
     frame.dataset.tags = piece.tags || '';
 
@@ -85,16 +86,28 @@ function createInfoSection(node) {
 
     var link_p = elmnt('p', 'link_p');
     var redirect = elmnt('a', 'redirect');
-    redirect.innerHTML = node.dataset.redirect;
+    redirect.innerHTML = "View Project";
     redirect.href = node.dataset.redirect;
     redirect.target = '_blank';
     link_p.appendChild(redirect);
+
+    if (node.dataset.github) {
+        var link_github = elmnt('p', 'link_github');
+        var github = elmnt('a', 'github');
+        github.innerHTML = "View Code";
+        github.href = node.dataset.github;
+        github.target = '_blank';
+        link_github.appendChild(github);
+    }
 
     var date = elmnt('p', 'date');
     date.innerHTML = node.dataset.date;
 
     info.appendChild(title);
     info.appendChild(link_p);
+
+    if (link_github)
+        info.appendChild(link_github);
     info.appendChild(medium);
     info.appendChild(description);
     info.appendChild(date);
@@ -113,7 +126,7 @@ function zoom(node) {
             info_section = createInfoSection(node);
             gallery.insertBefore(info_section, node);
             setTimeout(function() {
-                info_section.style.maxHeight = '15em';
+                info_section.style.maxHeight = '20em';
             }, 10);
 
         }, 500);
@@ -258,6 +271,11 @@ function mouseout_artpiece (event) {
 
 function toggleCategory (event) {
 
+    if (info_section) {
+        gallery.removeChild(info_section);
+        info_section = null;
+    }
+
     var tag = event.target.dataset.tag;
 
     if (tag == 'art_categories' || tag == 'painting_categories') {
@@ -279,6 +297,12 @@ function toggleCategory (event) {
 }
 
 function showCategory (event) {
+
+    if (info_section) {
+        gallery.removeChild(info_section);
+        info_section = null;
+    }
+
     var tag = event.target.dataset.tag;
 
     for (var i = 0; i < gallery.childNodes.length; i++) {
