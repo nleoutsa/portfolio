@@ -24,7 +24,7 @@ project_data.forEach(function(piece) {
 
 
 function createFrame (piece) {
-    var frame = elmnt('a', 'frame');
+    var frame = elmnt('div', 'frame');
     var art_piece = elmnt('div', 'art_piece');
     var aspect_force = elmnt('div', 'aspect_force');
 
@@ -78,26 +78,30 @@ document.getElementById('title').addEventListener('click', function(event) {
     this.style.color = 'red';
 });
 
-addEventListener('mouseover', function(event) {
-    if (event.target.className == 'art_piece') {
+window.addEventListener('mouseover', function(event) {
+    if (getWindowWidth().x > 600) {
+        if (event.target.className == 'art_piece') {
 
-        for (var i = 0; i < gallery.childNodes.length; i++) {
-            if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
-                gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
-            }
-            else {
-               gallery.childNodes[i].childNodes[1].style.opacity = '';
+            for (var i = 0; i < gallery.childNodes.length; i++) {
+                if (gallery.childNodes[i].nodeType == 1 && gallery.childNodes[i] != event.target.parentNode) {
+                    gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
+                }
+                else {
+                   gallery.childNodes[i].childNodes[1].style.opacity = '';
+                }
             }
         }
     }
 });
 
-addEventListener('mouseout', function(event) {
-    if (event.target.className == 'art_piece') {
+window.addEventListener('mouseout', function(event) {
+    if (getWindowWidth().x > 600) {
+        if (event.target.className == 'art_piece') {
 
-        for (var i = 0; i < gallery.childNodes.length; i++) {
-            if (gallery.childNodes[i].nodeType == 1) {
-                gallery.childNodes[i].childNodes[1].style.opacity = '';
+            for (var i = 0; i < gallery.childNodes.length; i++) {
+                if (gallery.childNodes[i].nodeType == 1) {
+                    gallery.childNodes[i].childNodes[1].style.opacity = '';
+                }
             }
         }
     }
@@ -108,10 +112,7 @@ var zoomed_frame = gallery.childNodes[0];
 
 var event_type = window.mobilecheck ? 'touchstart' : 'click';
 
-addEventListener(event_type, function(event) {
-
-    console.log(event);
-    alert(event.target.className + ", " + event.type);
+window.addEventListener(event_type, function(event) {
 
     if (event.target.className == 'art_piece') {
         // get index of picture in gallery
