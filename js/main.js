@@ -5,7 +5,7 @@
 var stats = document.getElementById('stats');
 var gallery = document.getElementById('gallery');
 
-var zoomed_size = '95%';
+var zoomed_size = '96.5%';
 
 
 //////////////////////////////////////////
@@ -108,6 +108,15 @@ addEventListener('click', function(event) {
         // get index of picture in gallery
         var index = getIndex(event.target.parentNode)
 
+        var minimize_number = function () {
+            if (getWindowWidth().x > 900)
+                return 4;
+            else if (getWindowWidth().x > 600)
+                return 3;
+            else
+                return 2;
+        }
+
         // zoom
         if (event.target.parentNode.dataset.zoom == 'false') {
 
@@ -117,8 +126,8 @@ addEventListener('click', function(event) {
 
             hidden_frames = [];
 
-            if (index % 4 > 0) {
-                for (var i = (index % 4); i > 0; i--) {
+            if (index % minimize_number() > 0) {
+                for (var i = (index % minimize_number()); i > 0; i--) {
                     var frame = gallery.childNodes[index - i];
                     if (frame.nodeType == 1) {
                         frame.style.width = '0';
