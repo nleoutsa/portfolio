@@ -24,7 +24,7 @@ project_data.forEach(function(piece) {
 
 
 function createFrame (piece) {
-    var frame = elmnt('div', 'frame');
+    var frame = elmnt('a', 'frame');
     var art_piece = elmnt('div', 'art_piece');
     var aspect_force = elmnt('div', 'aspect_force');
 
