@@ -348,8 +348,8 @@ body {
     display: inline-block;
     width: 90%;
     margin: 1.25%;
-    box-shadow: -3px 3px 3px rgba(0,0,0,0.4);
-
+    border-top: 1px solid #222;
+    border-right: 1px solid #222;
 }
 .info p {
     margin-bottom: 1em;
@@ -361,16 +361,36 @@ body {
     font-size: 1.4em;
     margin-bottom: 0.6em;
 }
-.link_p {
-    text-align: center;
+
+.link_p,
+.link_github {
+    float: right;
+    margin-right: 20px;
+
 }
+
 .info p a:link,
 .info p a:visited {
+    width: 100px;
+    display: inline-block;
+    border: 1px solid #4ac;
+    border-radius: 5px;
+    padding: 1em 0.5em;
+    text-align: center;
+    float: left;
     color: #4ac;
+    line-height: 1em;
     text-decoration: none;
     margin-bottom: 1em;
+
+    -webkit-transition: all ease 0.6s;
+    -moz-transition: all ease 0.6s;
+    -o-transition: all ease 0.6s;
+    transition: all ease 0.6s;
 }
 .info p a:hover {
+    background-color: #4ac;
+    color: #fff;
     font-weight: bold;
 }
 

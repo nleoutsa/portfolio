@@ -84,12 +84,14 @@ function createInfoSection(node) {
     var medium = elmnt('p', 'medium');
     medium.innerHTML = node.dataset.medium;
 
-    var link_p = elmnt('p', 'link_p');
-    var redirect = elmnt('a', 'redirect');
-    redirect.innerHTML = "View Project";
-    redirect.href = node.dataset.redirect;
-    redirect.target = '_blank';
-    link_p.appendChild(redirect);
+    if (node.dataset.redirect) {
+        var link_p = elmnt('p', 'link_p');
+        var redirect = elmnt('a', 'redirect');
+        redirect.innerHTML = "View Project";
+        redirect.href = node.dataset.redirect;
+        redirect.target = '_blank';
+        link_p.appendChild(redirect);
+    }
 
     if (node.dataset.github) {
         var link_github = elmnt('p', 'link_github');
@@ -104,13 +106,15 @@ function createInfoSection(node) {
     date.innerHTML = node.dataset.date;
 
     info.appendChild(title);
-    info.appendChild(link_p);
-
-    if (link_github)
-        info.appendChild(link_github);
     info.appendChild(medium);
     info.appendChild(description);
     info.appendChild(date);
+
+    if (link_p)
+        info.appendChild(link_p);
+
+    if (link_github)
+        info.appendChild(link_github);
 
     return info;
 }
