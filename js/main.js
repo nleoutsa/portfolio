@@ -132,24 +132,18 @@ function zoom(node) {
             setTimeout(function() {
                 info_section.style.maxHeight = '20em';
 
-                var nodeY = info_section.offsetTop - info_section.clientHeight;
-
-                var start = null;
+                // scroll to top of info section
                 function step(timestamp) {
-                  if (!start)
-                    start = timestamp;
-                  var progress = timestamp - start;
-
                   var scroll_amount = (info_section.offsetTop) - gallery.scrollTop;
-
+                  console.log(scroll_amount);
                   gallery.scrollTop += (scroll_amount / 15);
 
-                  console.log(progress);
-                  if (gallery.scrollTop != info_section.offsetTop) {
-                    requestAnimationFrame(step);
+                  if (info_section) {
+                      if (gallery.scrollTop < (info_section.offsetTop - 20) || gallery.scrollTop > (info_section.offsetTop)) {
+                        requestAnimationFrame(step);
+                      }
                   }
                 }
-
                 requestAnimationFrame(step);
 
             }, 10);
