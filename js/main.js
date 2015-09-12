@@ -135,9 +135,7 @@ function zoom(node) {
                 // scroll to top of info section
                 function step(timestamp) {
                   var scroll_amount = (info_section.offsetTop) - gallery.scrollTop;
-                  console.log(scroll_amount);
                   gallery.scrollTop += (scroll_amount / 15);
-
                   if (info_section) {
                       if (gallery.scrollTop < (info_section.offsetTop - 20) || gallery.scrollTop > (info_section.offsetTop)) {
                         requestAnimationFrame(step);
