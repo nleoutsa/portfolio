@@ -33,7 +33,7 @@ var project_data = [
         'title'         : 'Arbitrage Ed',
         'description'   : 'Arbitrage Ed aims to improve financial literacy through relevant lessons. Short videos let you learn new concepts in minutes, targeted problem sets allow you to test your comprehension, and research tools let you apply what you\'ve learned to real-world data.',
         'medium'        : 'JavaScript, JQuery, HTML5, CSS3, AngularJS, Node.js, MongoDB, Express.js',
-        'redirect'      : 'http://arbitrageed.com',
+        'redirect'      : 'http://www.arbitrageed.com',
         'github'        : 'https://github.com/nleoutsa/',
         'date'          : 'March - August 2015',
         'tags'          : 'web'
@@ -45,7 +45,7 @@ var project_data = [
         'title'         : 'My old portfolio',
         'description'   : 'The last iteration of my portfolio site. A lot of fun to make, but I like to switch things up.',
         'medium'        : 'AngularJS, JavaScript, JQuery, HTML5, CSS3, node.js',
-        'redirect'      : 'maxwellmarlowe.herokuapp.com/',
+        'redirect'      : 'http://maxwellmarlowe.herokuapp.com/',
         'github'        : 'https://github.com/nleoutsa/maxwellmarlowe',
         'date'          : '2015',
         'tags'          : 'web'
