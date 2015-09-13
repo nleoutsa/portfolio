@@ -9,7 +9,7 @@ var zoomed_size = '96.5%';
 
 
 var hidden_frames = [];
-var unselected_frames = [];
+var current_category = [];
 var zoomed_frame = gallery.childNodes[0];
 var info_section;
 
@@ -70,6 +70,7 @@ function createFrame (piece) {
     frame.appendChild(art_piece);
 
     gallery.appendChild(frame);
+    current_category.push(frame);
 }
 
 function createInfoSection(node) {
@@ -202,8 +203,9 @@ function click_artpiece (event) {
     if (info_section) {
         gallery.removeChild(info_section);
     }
-    // get index of picture in gallery
-    var index = getIndex(event.target.parentNode)
+
+    // get index of picture in currently visible images array
+    var index = current_category.indexOf(event.target.parentNode);
 
     var minimize_number = function () {
         if (getWindowWidth().x > 900)
@@ -220,17 +222,18 @@ function click_artpiece (event) {
         if (zoomed_frame)
             unzoom(zoomed_frame);
 
-        zoomed_frame = gallery.childNodes[index];
+        zoomed_frame = event.target.parentNode;
 
         hidden_frames = [];
 
         if (index % minimize_number() > 0) {
             for (var i = (index % minimize_number()); i > 0; i--) {
-                var frame = gallery.childNodes[index - i];
+                var frame = current_category[index - i];
+
                 if (frame.nodeType == 1) {
                     frame.style.width = '0';
                     frame.style.margin = '0';
-                    hidden_frames.unshift(frame);
+                    hidden_frames.push(frame);
                 }
             }
         }
@@ -251,7 +254,6 @@ function click_artpiece (event) {
         unzoom(event.target.parentNode);
 
         hidden_frames.forEach(function (frame) {
-
             frame.style.width = '0';
             frame.style.margin = '0';
 
@@ -289,11 +291,6 @@ function mouseout_artpiece (event) {
 
 function toggleCategory (event) {
 
-    if (info_section) {
-        gallery.removeChild(info_section);
-        info_section = null;
-    }
-
     var tag = event.target.dataset.tag;
 
     if (tag == 'art_categories' || tag == 'painting_categories') {
@@ -320,6 +317,13 @@ function showCategory (event) {
         gallery.removeChild(info_section);
         info_section = null;
     }
+    if (zoomed_frame) {
+        unzoom(zoomed_frame);
+    }
+
+    current_category = [];
+
+    zoomed_frame = null;
 
     var tag = event.target.dataset.tag;
 
@@ -334,6 +338,7 @@ function showCategory (event) {
         else {
             child.style.width = '';
             child.style.margin = '';
+            current_category.push(child);
         }
     }
 }
