@@ -16,6 +16,7 @@ var info_section;
 var art_pieces = document.getElementsByClassName('art_piece');
 var toggle_switches = document.getElementsByClassName('toggle');
 var tag_buttons = document.getElementsByClassName('tag');
+var about_buttons = document.getElementsByClassName('about');
 
 //////////////////////////////////////////
 //         FUNCTION CALLS
@@ -25,6 +26,16 @@ project_data.forEach(function(piece) {
     if (piece.url)
         createFrame(piece);
 });
+
+// clicking my name should bring you to the 'starting gallery'
+// 'starting gallery' is web dev stuff and about section.
+// make about section a frame element fitting into gallery...
+// you can use id to over specify frame styles...
+
+
+
+
+
 
 //////////////////////////////////////////
 //         FUNCTIONS
@@ -36,9 +47,7 @@ function createFrame (piece) {
     var art_piece = elmnt('div', 'art_piece');
     var aspect_force = elmnt('div', 'aspect_force');
 
-
     var thumbnail;
-
 
     // set data attributes so we can access them elsewhere...
     frame.dataset.ratio = piece.ratio || 1;
@@ -120,6 +129,7 @@ function createInfoSection(node) {
     return info;
 }
 
+
 function zoom(node) {
 
     var ratio = node.dataset.ratio;
@@ -193,9 +203,14 @@ for (var i = 0; i < toggle_switches.length; i++) {
     toggle_switches[i].addEventListener('click', function(event) {toggleCategory(event);}, false);
 }
 
-// add event listeners to toggle_switches
+// add event listeners to tag buttons
 for (var i = 0; i < tag_buttons.length; i++) {
     tag_buttons[i].addEventListener('click', function(event) {showCategory(event);}, false);
+}
+
+// add event listeners to about buttons
+for (var i = 0; i < about_buttons.length; i++) {
+    about_buttons[i].addEventListener('click', function(event) {showAboutSection(event);}, false);
 }
 
 function click_artpiece (event) {
@@ -263,7 +278,6 @@ function click_artpiece (event) {
                 frame.style.width = '';
                 frame.style.margin = '';
             }, 10);
-
         });
     }
 }
@@ -313,6 +327,31 @@ function toggleCategory (event) {
 
 function showCategory (event) {
 
+
+    // highlight selected section, unhighlight all others
+    for (var i = 0; i < tag_buttons.length; i++) {
+        tag_buttons[i].dataset.selected = 'false';
+    }
+    for (var i = 0; i < about_buttons.length; i++) {
+        about_buttons[i].dataset.selected = 'false';
+    }
+    event.target.dataset.selected = 'true';
+
+
+    gallery.style.height = '';
+    gallery.style.paddingTop = '';
+
+    for (var i = 0; i < gallery.parentNode.childNodes.length; i++) {
+        child = gallery.parentNode.childNodes[i];
+        if (child.nodeType == 1) {
+            if (child != gallery) {
+                child.style.maxHeight = '0';
+            }
+            else
+                child.style.maxHeight = '100%';
+        }
+    }
+
     if (info_section) {
         gallery.removeChild(info_section);
         info_section = null;
@@ -331,7 +370,7 @@ function showCategory (event) {
 
         var child = gallery.childNodes[i];
 
-        if (child.className == 'frame' && child.dataset.tags.match(new RegExp(tag)) == null) {
+        if (child.dataset.tags.match(new RegExp(tag)) == null) {
             child.style.width = 0;
             child.style.margin = 0;
         }
@@ -341,6 +380,58 @@ function showCategory (event) {
             current_category.push(child);
         }
     }
+}
+
+function showAboutSection (event) {
+
+    // highlight selected section, unhighlight all others
+    for (var i = 0; i < tag_buttons.length; i++) {
+        tag_buttons[i].dataset.selected = 'false';
+    }
+    for (var i = 0; i < about_buttons.length; i++) {
+        about_buttons[i].dataset.selected = 'false';
+    }
+    event.target.dataset.selected = 'true';
+
+
+    if (info_section) {
+        gallery.removeChild(info_section);
+        info_section = null;
+    }
+    if (zoomed_frame) {
+        unzoom(zoomed_frame);
+    }
+
+    current_category = [];
+
+    zoomed_frame = null;
+
+    var tag = event.target.dataset.tag;
+
+    // hide frames
+    for (var i = 0; i < gallery.childNodes.length; i++) {
+        var child = gallery.childNodes[i];
+        child.style.width = 0;
+        child.style.margin = 0;
+    }
+
+    for (var i = 0; i < gallery.parentNode.childNodes.length; i++) {
+        var child = gallery.parentNode.childNodes[i];
+
+        if (child.nodeType == 1) {
+            if (child.tagName == 'DIV' && child.dataset.tag == tag) {
+                child.style.maxHeight = '100%';
+                child.style.height = '';
+                child.style.paddingTop = '';
+            }
+            else {
+                child.style.maxHeight = 0;
+                child.style.height = 0;
+                child.style.paddingTop = 0;
+            }
+        }
+    }
+
 }
 
 //////////////////////////////////////////

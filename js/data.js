@@ -80,7 +80,7 @@ var project_data = [
         'ratio'         : 0.72549,
         'title'         : 'SimpleText',
         'description'   : 'Send a text message to anyone using SimpleText! A test project and great learning experience using the Twilio API, Datamapper, Sinatra, Heroku, and PostgreSQL.',
-        'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Twilio, ',
+        'medium'        : 'JavaScript, JQuery, HTML5, CSS3, Twilio, Sinatra, Ruby, Datamapper, PostgreSQL',
         'github'        : 'https://github.com/nleoutsa/simpleText',
         'redirect'      : 'https://morning-retreat-6114.herokuapp.com/',
         'date'          : '2014',
@@ -274,19 +274,35 @@ var project_data = [
 ];
 
 
-
-// DATA
-var artwork = [
-    {title: 'a', small_thumbnail: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.1/v1441821456/emma_sneakers_lboqnu.jpg', medium_thumbnail: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.1/v1441821456/emma_sneakers_lboqnu.jpg', large_pic: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.5/v1441821456/emma_sneakers_lboqnu.jpg'},
-    {title: 'b', small_thumbnail: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.1/v1441821456/horse_nm9kwo.jpg', medium_thumbnail: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.1/v1441821456/horse_nm9kwo.jpg', large_pic: 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.5/v1441821456/horse_nm9kwo.jpg'},
-    {title: 'c', small_thumbnail: 'http://i.imgur.com/fm3ww0et.jpg', medium_thumbnail: 'http://i.imgur.com/fm3ww0em.jpg', large_pic: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', small_thumbnail: 'http://i.imgur.com/J0pmOlVt.jpg', medium_thumbnail: 'http://i.imgur.com/J0pmOlVm.jpg', large_pic: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', small_thumbnail: 'http://i.imgur.com/qBKO2GSt.jpg', medium_thumbnail: 'http://i.imgur.com/qBKO2GSm.jpg', large_pic: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'cc', small_thumbnail: 'http://i.imgur.com/WdR9k3Zt.jpg', medium_thumbnail: 'http://i.imgur.com/WdR9k3Zm.jpg', large_pic: 'http://i.imgur.com/WdR9k3Z.jpg'},
-    {title: 'a', small_thumbnail: 'http://i.imgur.com/KuEXstZt.jpg', medium_thumbnail: 'http://i.imgur.com/KuEXstZm.jpg', large_pic: 'http://i.imgur.com/KuEXstZ.jpg'},
-    {title: 'b', small_thumbnail: 'http://i.imgur.com/kfpjNWXt.png', medium_thumbnail: 'http://i.imgur.com/kfpjNWXm.png', large_pic: 'http://i.imgur.com/kfpjNWX.png'},
-    {title: 'c', small_thumbnail: 'http://i.imgur.com/fm3ww0et.jpg', medium_thumbnail: 'http://i.imgur.com/fm3ww0em.jpg', large_pic: 'http://i.imgur.com/fm3ww0e.jpg'},
-    {title: 'aa', small_thumbnail: 'http://i.imgur.com/J0pmOlVt.jpg', medium_thumbnail: 'http://i.imgur.com/J0pmOlVm.jpg', large_pic: 'http://i.imgur.com/J0pmOlV.jpg'},
-    {title: 'bb', small_thumbnail: 'http://i.imgur.com/qBKO2GSt.jpg', medium_thumbnail: 'http://i.imgur.com/qBKO2GSm.jpg', large_pic: 'http://i.imgur.com/qBKO2GS.jpg'},
-    {title: 'cc', small_thumbnail: 'http://i.imgur.com/WdR9k3Zt.jpg', medium_thumbnail: 'http://i.imgur.com/WdR9k3Zm.jpg', large_pic: 'http://i.imgur.com/WdR9k3Z.jpg'}
-];
+var about_data = {
+    'skills': [
+        {
+            'skill'     : 'HTML5',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'CSS3',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'JavaScript',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'AngularJS',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'Node.js',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'JQuery',
+            'rating'    : 85
+        },
+        {
+            'skill'     : 'Design',
+            'rating'    : 85
+        }
+    ]
+};

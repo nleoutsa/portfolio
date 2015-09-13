@@ -17,57 +17,70 @@
 <body>
 
     <div id="site_container">
+
         <h1>Nick Leoutsakos, Web Developer, Designer, Software Engineer, JavaScript fanatic.</h1>
         <section id="menu_container">
             <h2>Nick Leoutsakos, Web Developer focusing on front-end web dev. Specializing in Angular.JS, Node.js, Express.JS, MongoDb, PostgreSQL, Javascript</h2>
 
-            <p id="site_title"><span id="initials_title">NMML</span><span class='name_title'>Nicholas</span> <span class='middle_names name_title'>Maxwell</span> <span class='middle_names name_title'>Marlowe</span> <span class='name_title'>Leoutsakos</span> <span id='job_title'>// Web Developer</span> <span id='designer_title'>&amp; Designer</span></p>
+
+            <p id="site_title">
+                <a href="">
+                    <span id="initials_title">NMML</span><span class='name_title'>Nicholas</span> <span class='middle_names name_title'>Maxwell</span> <span class='middle_names name_title'>Marlowe</span> <span class='name_title'>Leoutsakos</span>
+                </a>
+                <span id='job_title'>// Web Developer</span> <span id='designer_title'>&amp; Designer</span>
+            </p>
 
             <ul id="menu">
                 <li>
-                    <p class='tag' data-tag=''>All</p>
+                    <p class='tag' data-tag='' data-selected='false'>All Projects</p>
                 </li>
 
                 <li>
-                    <p class='tag' data-tag='web'>Web Development &amp; Design</p>
+                    <p class='tag' data-tag='web' data-selected='false'>Web Development &amp; Design</p>
                 </li>
 
                 <li>
-                    <p class='toggle' data-tag="art_categories">
+                    <p class='toggle' data-tag="art_categories" data-selected='false'>
                         <span class='tag' data-tag='art'>Art</span> <span id='art_categories_toggle' data-tag="art_categories">+</span>
                     </p>
 
                     <ul id='art_categories'>
                         <li>
-                            <p class='toggle' data-tag="painting_categories">
+                            <p class='toggle' data-tag="painting_categories" data-selected='false'>
                                 <span class='tag' data-tag='painting'>Paintings</span> <span id='painting_categories_toggle' data-tag="painting_categories">+</span>
                             </p>
 
                             <ul id='painting_categories'>
                                 <li>
-                                    <p class='tag' data-tag='oil'>Oil</p>
+                                    <p class='tag' data-tag='oil' data-selected='false'>Oil</p>
                                 </li>
                                 <li>
-                                    <p class='tag' data-tag='acrylic'>Acrylic</p>
+                                    <p class='tag' data-tag='acrylic' data-selected='false'>Acrylic</p>
                                 </li>
                                 <li>
-                                    <p class='tag' data-tag='digital'>Digital</p>
+                                    <p class='tag' data-tag='digital' data-selected='false'>Digital</p>
                                 </li>
                                 <li>
-                                    <p class='tag' data-tag='portraiture'>Portraits</p>
+                                    <p class='tag' data-tag='portraiture' data-selected='false'>Portraits</p>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <p class='tag' data-tag='woodwork'>Woodwork</p>
+                            <p class='tag' data-tag='woodwork' data-selected='false'>Woodwork</p>
                         </li>
                         <li>
-                            <p class='tag' data-tag='3D'>3D</p>
+                            <p class='tag' data-tag='3D' data-selected='false'>3D</p>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <p class='tag' data-tag='about'>About Me</p>
+                    <p class='about' data-tag='about_me' data-selected='false'>About Me</p>
+                </li>
+                <li>
+                    <p class='about' data-tag='skills' data-selected='false'>Skills</p>
+                </li>
+                <li>
+                    <p class='about' data-tag='contact' data-selected='false'>Contact</p>
                 </li>
             </ul>
         </section>
@@ -75,6 +88,20 @@
         <section id="gallery_container">
             <h2>Nicholas Maxwell Marlowe Leoutsakos Gallery. Examples of work and links to relevant sites and GitHub pages. Web Development, Web Design, Programming, Front-End, Full-Stack, Back-End, Angular, Node, Express, Mongo, MongoDB, JQuery, Javascript, HTML5, HTML, CSS3, CSS, etc, etc, etc...</h2>
             <div id="gallery"></div>
+            <div id="about_me" data-tag='about_me'>
+                <h3>Me:</h3>
+                <p>I'm a web developer and designer focusing on front-end javascript development using modern JS frameworks. Lately, I've been working with the MEAN stack and am loving it. I am looking for opportunities to expand my skillsets and produce great apps.</p>
+
+                <div>DATA VISUAL "ABOUT ME"</div>
+            </div>
+            <div id="skills" data-tag='skills'>
+                <h3>Skills</h3>
+                <div>DATA VISUAL "SKILLS"</div>
+            </div>
+            <div id="contact" data-tag='contact'>
+                <h3>Contact Me:</h3>
+                <p>email: <a href="mailto:nleoutsa@gmail.com?Subject=Hey%20Nick" target="_blank">nleoutsa@gmail.com</a></p>
+            </div>
         </section>
     </div>
 

@@ -224,39 +224,27 @@ h2 {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+
+    z-index: -99999;
 }
 
 #site_container {
-    display: table;
     width: 100%;
     height: 100%;
 }
 
 #menu_container {
-    display: table-row;
     width: 100%;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.5);
-
-    background-color: #222;
-    /*background-image: -webkit-linear-gradient(top, #333, #111);*/
-    /*background-image:    -moz-linear-gradient(top, #333, #111);*/
-    /*background-image:      -o-linear-gradient(top, #333, #111);*/
-    /*background-image:         linear-gradient(to bottom, #333, #111);*/
-
-    color: #fff;
     position: fixed;
     z-index: 999;
-}
-#menu {
-    list-style: none;
-    margin: 0;
-    display: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.5);
 
-    background: #444;
+    background-color: rgba(255,255,255,0.8);
+    color: #333;
 }
-#menu li {
-    margin: 1em;
-    list-style: none;
+
+#menu {
+    display: none;
 }
 
 #site_title {
@@ -264,20 +252,17 @@ h2 {
     line-height: 53px;
     font-size: 1.6em;
     height: 53px;
-    box-shadow: 3px 0 5px rgba(0,0,0,0.5);
+}
+
+#site_title a:link,
+#site_title a:visited,
+#site_title a:hover {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
 }
 .name_title {
     display: none;
-}
-#site_title .middle_names {
-    overflow: hidden;
-    max-height: 0;
-    -webkit-transition: max-height ease 1.2s;
-    -moz-transition: max-height ease 1.2s;
-    transition: max-height ease 1.2s;
-}
-#site_title:hover .middle_names {
-    max-height: 1em;
 }
 #job_title {
     font-size: 0.8em;
@@ -311,7 +296,8 @@ h2 {
 }
 
 .tag,
-.toggle {
+.toggle,
+.about {
     cursor: pointer;
 }
 .toggle span:last-child {
@@ -348,12 +334,6 @@ h2 {
 .info {
     position: relative;
 
-    /*background-color: #e0e1f5;
-    background-image: -webkit-linear-gradient(top, #efefef, #fff);
-    background-image:    -moz-linear-gradient(top, #efefef, #fff);
-    background-image:      -o-linear-gradient(top, #efefef, #fff);
-    background-image:         linear-gradient(to bottom, #efefef, #fff);
-*/
     color: #222;
     padding: 1em;
 
@@ -406,7 +386,6 @@ h2 {
     font-weight: bold;
 }
 
-
 /*
 *******************************************
               MEDIA SYTLES
@@ -433,6 +412,8 @@ h2 {
     .frame[data-zoom='false']:hover {
         width: 32%;
         margin: 0.5%;
+
+        box-shadow: -4px 4px 4px rgba(0,0,0,0.7);
     }
 
     .info {
@@ -450,16 +431,74 @@ h2 {
 
     #menu_container {
         display: table-cell;
-        width: 00px;
+        width: 300px;
         height: 100vh;
         vertical-align: top;
         position: static;
+
+        background: #222;
+        color: #fff;
     }
 
+
     #menu {
-        padding: 1em;
+
         display: block;
+        list-style: none;
+        margin: 0;
+
+        padding-top: 2em;
+        padding-left: 1em;
     }
+
+    #menu li {
+        padding-left: 2em;
+        margin-top: 0.3em;
+        line-height: 2em;
+        list-style: none;
+
+        -webkit-transition: background ease 0.6s;
+        -moz-transition: background ease 0.6s;
+        -o-transition: background ease 0.6s;
+        transition: background ease 0.6s;
+    }
+    #menu li p {
+        padding-left: 2em;
+        margin-top: 0.3em;
+        line-height: 2em;
+        list-style: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+
+        -webkit-transition: background ease 0.6s;
+        -moz-transition: background ease 0.6s;
+        -o-transition: background ease 0.6s;
+        transition: background ease 0.6s;
+    }
+    #menu li p[data-selected='true'] {
+        background-color: #fff;
+        color: #222;
+    }
+    #art_categories,
+    #painting_categories {
+        margin: 0;
+    }
+    #art_categories li p,
+    #painting_categories li p {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    #menu li p:hover {
+        background: #fff;
+        color: #222;
+        background-image: -webkit-linear-gradient(left, #fff, #222);
+        background-image:    -moz-linear-gradient(left, #fff, #222);
+        background-image:      -o-linear-gradient(left, #fff, #222);
+        background-image:         linear-gradient(to right, #fff, #222);
+    }
+
+
 
     #site_title {
         text-align: center;
@@ -467,6 +506,22 @@ h2 {
         line-height: 1em;
         padding: 1em;
         width: 300px;
+
+        background: #222;
+        color: #fff;
+
+        border-bottom: 1px solid white;
+
+    }
+    #site_title .middle_names {
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: max-height ease 0.2s;
+        -moz-transition: max-height ease 0.2s;
+        transition: max-height ease 0.2s;
+    }
+    #site_title a:hover .middle_names {
+        max-height: 1em;
     }
     #site_title span {
         display: block;
@@ -478,7 +533,6 @@ h2 {
     }
     span#initials_title {
         display: none;
-        /*visibility: hidden;*/
     }
 
     #gallery_container {
@@ -487,10 +541,16 @@ h2 {
     }
 
     #gallery {
+
+        max-height: 100%;
         margin-left: 1.25%;
         margin-top: 0;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
+
+        -webkit-transition: max-height ease 0.5s, height ease 0.5s;
+        -moz-transition: max-height ease 0.5s, height ease 0.5s;
+        transition: max-height ease 0.5s, height ease 0.5s;
     }
 
     .frame {
@@ -501,6 +561,29 @@ h2 {
         width: 24%;
     }
 
+    #about_me,
+    #skills,
+    #contact {
+        width: 100%;
+        height: 100vh;
+        max-height: 0;
+        overflow: hidden;
+
+        -webkit-transition: max-height ease 0.5s, height ease 0.5s;
+        -moz-transition: max-height ease 0.5s, height ease 0.5s;
+        transition: max-height ease 0.5s, height ease 0.5s;
+    }
+
+    #about_me {
+        /*background: #222;*/
+
+    }
+    #skills {
+        /*background: #abc;*/
+    }
+    #contact {
+
+    }
 }
 
 
