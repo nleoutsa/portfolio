@@ -258,7 +258,7 @@ h2 {
 #site_title a:visited,
 #site_title a:hover {
     text-decoration: none;
-    color: #fff;
+    color: #333;
     cursor: pointer;
 }
 .name_title {
@@ -525,6 +525,12 @@ h2 {
     }
     #site_title span {
         display: block;
+    }
+
+    #site_title a:link,
+    #site_title a:visited,
+    #site_title a:hover {
+        color: #fff;
     }
     span#designer_title,
     span#job_title {
