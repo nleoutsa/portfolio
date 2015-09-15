@@ -386,6 +386,31 @@ h2 {
     font-weight: bold;
 }
 
+.language_div {
+    color: green;
+}
+
+.language_data {
+    color: #333;
+}
+
+.JavaScript {
+    color: #EFDD4F;
+}
+.CSS {
+    color: #179AEB;
+}
+.HTML {
+    color: #E34C26;
+}
+.CoffeeScript {
+    color: #29344B;
+}
+
+.RUBY {
+    color: #d91404;
+}
+
 /*
 *******************************************
               MEDIA SYTLES
@@ -516,9 +541,9 @@ h2 {
     #site_title .middle_names {
         overflow: hidden;
         max-height: 0;
-        -webkit-transition: max-height ease 0.2s;
-        -moz-transition: max-height ease 0.2s;
-        transition: max-height ease 0.2s;
+        -webkit-transition: max-height ease 0.5s;
+        -moz-transition: max-height ease 0.5s;
+        transition: max-height ease 0.5s;
     }
     #site_title a:hover .middle_names {
         max-height: 1em;
@@ -589,6 +614,12 @@ h2 {
     }
     #contact {
 
+    }
+
+    #languages_breakdown {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 

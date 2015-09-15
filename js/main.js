@@ -18,6 +18,7 @@ var toggle_switches = document.getElementsByClassName('toggle');
 var tag_buttons = document.getElementsByClassName('tag');
 var about_buttons = document.getElementsByClassName('about');
 
+var git_repos = [];
 //////////////////////////////////////////
 //         FUNCTION CALLS
 //////////////////////////////////////////
@@ -54,7 +55,9 @@ function createFrame (piece) {
     frame.dataset.large_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload' + piece.url;
     frame.dataset.small_pic = 'http://res.cloudinary.com/maxwellmarlowe/image/upload/w_0.4' + piece.url;
     frame.dataset.zoom = 'false';
-    frame.dataset.github = piece.github || '';
+    if (piece.github) {
+        frame.dataset.github = piece.github || '';
+    }
 
     frame.dataset.tags = piece.tags || '';
 
@@ -63,6 +66,14 @@ function createFrame (piece) {
     frame.dataset.medium = piece.medium || '';
     frame.dataset.redirect = piece.redirect || '';
     frame.dataset.date = piece.date || '';
+    frame.dataset.languages = {'error': 'Waiting for Github API to respond'};
+
+
+    var all_bytes = 0;
+    if (piece.github) {
+        ajaxCall('https://api.github.com/', 'repos/' + piece.github + '/languages', frame);
+        git_repos.push(frame);
+    }
 
     if (piece.custom_crop)
         thumbnail = 'url(http://res.cloudinary.com/maxwellmarlowe/image/upload/' + piece.custom_crop + piece.url + ')';
@@ -107,9 +118,40 @@ function createInfoSection(node) {
         var link_github = elmnt('p', 'link_github');
         var github = elmnt('a', 'github');
         github.innerHTML = "View Code";
-        github.href = node.dataset.github;
+        github.href = 'https://github.com/' + node.dataset.github;
         github.target = '_blank';
         link_github.appendChild(github);
+
+        var github_languages = elmnt('p', 'github_languages');
+        var languages = JSON.parse(node.dataset.languages);
+        var keys = Object.keys(languages);
+
+        var total_bytes = 0;
+        for (var i = 0; i < keys.length; i++) {
+            total_bytes += languages[keys[i]];
+        }
+
+        for (var i = 0; i < keys.length; i++) {
+            var number_of_bytes = languages[keys[i]];
+
+            var language_div = elmnt('div', 'language_div');
+
+            var language_key = elmnt('span', keys[i]);
+            language_key.innerHTML = keys[i] + ': ';
+
+            var language_data = elmnt('span', 'language_data');
+            language_data.dataset.bytes = number_of_bytes + ' bytes';
+            language_data.dataset.percent = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
+
+            language_data.innerHTML = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
+
+            language_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
+
+            language_div.appendChild(language_key);
+            language_div.appendChild(language_data);
+            github_languages.appendChild(language_div);
+        }
+
     }
 
     var date = elmnt('p', 'date');
@@ -119,6 +161,9 @@ function createInfoSection(node) {
     info.appendChild(medium);
     info.appendChild(description);
     info.appendChild(date);
+
+    if (github_languages)
+        info.appendChild(github_languages);
 
     if (link_p)
         info.appendChild(link_p);
@@ -141,7 +186,7 @@ function zoom(node) {
             info_section = createInfoSection(node);
             gallery.insertBefore(info_section, node);
             setTimeout(function() {
-                info_section.style.maxHeight = '20em';
+                info_section.style.maxHeight = '30em';
 
                 // scroll to top of info section
                 function step(timestamp) {
@@ -327,7 +372,6 @@ function toggleCategory (event) {
 
 function showCategory (event) {
 
-
     // highlight selected section, unhighlight all others
     for (var i = 0; i < tag_buttons.length; i++) {
         tag_buttons[i].dataset.selected = 'false';
@@ -383,7 +427,6 @@ function showCategory (event) {
 }
 
 function showAboutSection (event) {
-
     // highlight selected section, unhighlight all others
     for (var i = 0; i < tag_buttons.length; i++) {
         tag_buttons[i].dataset.selected = 'false';
@@ -432,17 +475,83 @@ function showAboutSection (event) {
         }
     }
 
+    var languages_breakdown = document.getElementById('languages_breakdown');
+
+    if (languages_breakdown.innerHTML == '') {
+        var total_bytes = 0;
+        var all_repos_languages = {};
+
+        for (var i = 0; i < git_repos.length; i++) {
+
+            var languages = JSON.parse(git_repos[i].dataset.languages);
+            var keys = Object.keys(languages);
+
+            for (var j = 0; j < keys.length; j++) {
+                total_bytes += languages[keys[j]];
+
+                if (all_repos_languages[keys[j]])
+                    all_repos_languages[keys[j]] += languages[keys[j]];
+                else
+                    all_repos_languages[keys[j]] = languages[keys[j]];
+            }
+        }
+
+        var language_names = Object.keys(all_repos_languages);
+
+        for (var i = 0; i < language_names.length; i++) {
+            var lang = language_names[i];
+
+            var lang_bytes = all_repos_languages[language_names[i]];
+            var lang_percent = (100 * (lang_bytes / total_bytes)).toFixed(2) + '%';
+
+            var skill_div = elmnt('div', 'skill_div');
+
+            var skill_lang = elmnt('span', lang);
+            skill_lang.innerHTML = lang + ': ';
+            var skill_data = elmnt('span', 'skill_data');
+            skill_data.innerHTML = lang_percent;
+
+            skill_data.dataset.bytes = all_repos_languages[language_names[i]] + ' bytes';
+            skill_data.dataset.percent = lang_percent;
+
+            skill_div.appendChild(skill_lang);
+            skill_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
+
+            skill_div.appendChild(skill_data);
+
+            // animate
+
+            var angle_deg = 360 / (i + 1);
+
+            setVendorPrefixForTransform (skill_div, 'rotate(' + angle_deg + 'deg) translate(0px,0px)');
+
+
+
+
+
+            languages_breakdown.appendChild(skill_div);
+        }
+    }
 }
 
+function switchLanguageDataFormat(event) {
+    console.log(event);
+
+    if (event.target.innerHTML.match(new RegExp('%')))
+        event.target.innerHTML = event.target.dataset.bytes;
+    else
+        event.target.innerHTML = event.target.dataset.percent;
+}
 //////////////////////////////////////////
 //         HELPER FUNCTIONS
 //////////////////////////////////////////
 
-function setVendorPrefix (node, property, value) {
-    node.style["-webkit-" + property] = value;
-    node.style["-moz-" + property] = value;
-    node.style["-ms-" + property] = value;
-    node.style["-o-" + property] = value;
+function setVendorPrefixForTransform (node, value) {
+    node.style.webkitTransform = value;
+    node.style.MozTransform = value;
+    node.style.msTransform = value;
+    node.style.OTransform = value;
+    node.style.transform = value;
 }
 
 // create element of type "type" with class "className"
@@ -483,3 +592,26 @@ window.mobilecheck = function() {
   (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
   return check;
 }
+
+function ajaxCall(api, command, node) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+            if(xmlhttp.status == 200){
+                node.dataset.languages = xmlhttp.responseText;
+            }
+            else if(xmlhttp.status == 400) {
+              console.log('There was an error 400');
+            }
+            else {
+               console.log('something else other than 200 was returned');
+            }
+        }
+    }
+
+    xmlhttp.open("GET", api + command, true);
+    xmlhttp.send();
+}
+
+
