@@ -523,7 +523,7 @@ function generateLanguageDataVisual () {
 
     for (var i = 0; i < language_names.length; i++) {
 
-        angle_deg += 360 / language_names.length;
+        angle_deg += (360 / language_names.length);
 
         var language =  new languageObject( language_names[i],
                             all_repos_languages[language_names[i]],
@@ -536,9 +536,6 @@ function generateLanguageDataVisual () {
 
         skill_lang.innerHTML = language.lang + '';
         skill_data.innerHTML = language.lang_percent + '%';
-
-        skill_data.dataset.bytes = all_repos_languages[language.lang] + ' bytes';
-        skill_data.dataset.percent = language.lang_percent + '%';
 
         // ISSUE, wait for values to be returned by ajax!!!!!!!!!
         // animate
@@ -581,7 +578,8 @@ function animateLanguage(skill_div, skill_data, skill_lang, center, language_nam
         }
         else if (cycle <= 1080) { // do for duration
             setVendorPrefixForTransform(languages_breakdown, 'rotate(' + (cycle - 720) + 'deg)');
-            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.01 * (cycle - 720)) + 'deg)');
+            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.05 * (cycle - 720)) + 'deg)');
+            // setVendorPrefixForTransform(skill_div, 'rotate(' + (cycle - 720) + 'deg)');
 
             requestAnimationFrame(step);
         }
