@@ -44,10 +44,12 @@ project_data.forEach(function(piece) {
 
 window.onresize=function(){
     if (getWindowWidth().x > 900) {
+        menu.style.display = 'block';
         menu.style.left = '0%';
         gallery.parentNode.style.left = '0%';
     }
     else {
+        menu.style.display = 'none';
         menu.style.left = '100%';
         gallery.parentNode.style.left = '0%';
     }
@@ -95,8 +97,10 @@ for (var i = 0; i < about_buttons.length; i++) {
 
 menu_toggle.addEventListener('click', function() {
     if (menu.style.left != '35%') {
+
+        menu.style.display = 'block';
         menu.style.left = '35%';
-        gallery.parentNode.style.left = '-100%';
+        gallery.parentNode.style.left = '-65%';
     }
     else {
         menu.style.left = '100%';
