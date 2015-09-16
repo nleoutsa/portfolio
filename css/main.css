@@ -387,28 +387,44 @@ h2 {
 }
 
 .language_div {
-    color: green;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+    display: block;
+    white-space: nowrap;
+    box-shadow:  -3px 3px 3px rgba(0,0,0,0.5);
 }
 
 .language_data {
+    position: absolute;
+    left: 5%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
     color: #333;
 }
 
-.JavaScript {
-    color: #EFDD4F;
-}
-.CSS {
-    color: #179AEB;
-}
-.HTML {
-    color: #E34C26;
-}
-.CoffeeScript {
-    color: #29344B;
+.JavaScript,
+.CSS,
+.HTML,
+.CoffeeScript,
+.Ruby {
+    opacity: 0;
+    color: #333;
+    -webkit-transition: all ease 1.6s;
+    -moz-transition: all ease 1.6s;
+    -o-transition: all ease 1.6s;
+    transition: all ease 1.6s;
 }
 
-.RUBY {
-    color: #d91404;
+
+/* skills section */
+#languages_breakdown_container {
+    display: none;
 }
 
 /*
@@ -605,22 +621,86 @@ h2 {
         transition: max-height ease 0.5s, height ease 0.5s;
     }
 
-    #about_me {
-        /*background: #222;*/
-
-    }
     #skills {
-        /*background: #abc;*/
-    }
-    #contact {
-
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
-    #languages_breakdown {
+    #languages_breakdown_container {
+        display: block;
+
+        font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+        /* position vertically */
         position: relative;
         top: 50%;
         transform: translateY(-50%);
+
+        height: 100%;
+        width: 100%;
+
+        background-color: #222;
+        background-image: -webkit-linear-gradient(left, #222, #111);
+        background-image:    -moz-linear-gradient(left, #222, #111);
+        background-image:      -o-linear-gradient(left, #222, #111);
+        background-image:         linear-gradient(to right, #222, #111);
+
+        -webkit-transform: rotate(5deg);
+        -moz-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+        transform: rotate(5deg);
+
+        /* get rid of jagged edges in chrome */
+        -webkit-backface-visibility: hidden;
     }
+    #languages_breakdown {
+        display: block;
+    }
+
+    .skill_div {
+        border-radius: 100%;
+        font-size: 2em;
+        font-weight: bolder;
+        text-align: right;
+        padding-right: 1em;
+
+        white-space: nowrap;
+
+        top: 1em;
+        left: 1em;
+
+        position: absolute;
+        height: 2em;
+        line-height: 2em;
+        box-shadow: -3px 3px 3px rgba(0,0,0,1);
+
+        width: 1em;
+
+        -webkit-transition: all ease 0.6s, width ease 1.2s;
+        -moz-transition: all ease 0.6s, width ease 1.2s;
+        -o-transition: all ease 0.6s, width ease 1.2s;
+        transition: all ease 0.6s, width ease 1.2s;
+
+        /* get rid of jagged edges in chrome */
+        -webkit-backface-visibility: hidden;
+    }
+    .skill_lang {
+        position: absolute;
+        display: inline-block;
+    }
+    .skill_data {
+        opacity: 0;
+        color: #fff;
+        padding-left: 2em;
+        position: absolute;
+        display: inline-block;
+
+        -webkit-transition: all ease 1.6s;
+        -moz-transition: all ease 1.6s;
+        -o-transition: all ease 1.6s;
+        transition: all ease 1.6s;
+    }
+
 }
 
 

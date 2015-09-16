@@ -306,3 +306,11 @@ var about_data = {
         }
     ]
 };
+
+var language_colors = {
+    'JavaScript' : '#EFDD4F',
+    'CSS' : '#179AEB',
+    'HTML' : '#E34C26',
+    'CoffeeScript' : '#29344B',
+    'Ruby' : '#d91404'
+};

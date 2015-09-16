@@ -138,14 +138,20 @@ function createInfoSection(node) {
 
             var language_key = elmnt('span', keys[i]);
             language_key.innerHTML = keys[i] + ': ';
+            language_key.style.color = "#333";
 
             var language_data = elmnt('span', 'language_data');
             language_data.dataset.bytes = number_of_bytes + ' bytes';
             language_data.dataset.percent = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
+            language_data.style.paddingLeft = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%'
+
             language_data.innerHTML = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
             language_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
+
+            language_div.style.backgroundColor = language_colors[keys[i]];
+            language_div.style.width = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
             language_div.appendChild(language_key);
             language_div.appendChild(language_data);
@@ -427,6 +433,7 @@ function showCategory (event) {
 }
 
 function showAboutSection (event) {
+
     // highlight selected section, unhighlight all others
     for (var i = 0; i < tag_buttons.length; i++) {
         tag_buttons[i].dataset.selected = 'false';
@@ -477,66 +484,125 @@ function showAboutSection (event) {
 
     var languages_breakdown = document.getElementById('languages_breakdown');
 
-    if (languages_breakdown.innerHTML == '') {
-        var total_bytes = 0;
-        var all_repos_languages = {};
-
-        for (var i = 0; i < git_repos.length; i++) {
-
-            var languages = JSON.parse(git_repos[i].dataset.languages);
-            var keys = Object.keys(languages);
-
-            for (var j = 0; j < keys.length; j++) {
-                total_bytes += languages[keys[j]];
-
-                if (all_repos_languages[keys[j]])
-                    all_repos_languages[keys[j]] += languages[keys[j]];
-                else
-                    all_repos_languages[keys[j]] = languages[keys[j]];
-            }
-        }
-
-        var language_names = Object.keys(all_repos_languages);
-
-        for (var i = 0; i < language_names.length; i++) {
-            var lang = language_names[i];
-
-            var lang_bytes = all_repos_languages[language_names[i]];
-            var lang_percent = (100 * (lang_bytes / total_bytes)).toFixed(2) + '%';
-
-            var skill_div = elmnt('div', 'skill_div');
-
-            var skill_lang = elmnt('span', lang);
-            skill_lang.innerHTML = lang + ': ';
-            var skill_data = elmnt('span', 'skill_data');
-            skill_data.innerHTML = lang_percent;
-
-            skill_data.dataset.bytes = all_repos_languages[language_names[i]] + ' bytes';
-            skill_data.dataset.percent = lang_percent;
-
-            skill_div.appendChild(skill_lang);
-            skill_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
-
-            skill_div.appendChild(skill_data);
-
-            // animate
-
-            var angle_deg = 360 / (i + 1);
-
-            setVendorPrefixForTransform (skill_div, 'rotate(' + angle_deg + 'deg) translate(0px,0px)');
-
-
-
-
-
-            languages_breakdown.appendChild(skill_div);
-        }
+    if (event.target.dataset.tag == 'skills' && languages_breakdown.innerHTML == '') {
+        generateLanguageDataVisual();
     }
 }
 
-function switchLanguageDataFormat(event) {
-    console.log(event);
 
+function generateLanguageDataVisual () {
+    var total_bytes = 0;
+    var all_repos_languages = {};
+
+    for (var i = 0; i < git_repos.length; i++) {
+
+        var languages = JSON.parse(git_repos[i].dataset.languages);
+        var keys = Object.keys(languages);
+
+        for (var j = 0; j < keys.length; j++) {
+            total_bytes += languages[keys[j]];
+
+            if (all_repos_languages[keys[j]])
+                all_repos_languages[keys[j]] += languages[keys[j]];
+            else
+                all_repos_languages[keys[j]] = languages[keys[j]];
+        }
+    }
+
+    var language_names = Object.keys(all_repos_languages);
+
+    // remove coffeescript
+    language_names.splice(language_names.indexOf('CoffeeScript'), 1);
+
+    var center = new Vector(gallery.parentNode.clientWidth / 2, gallery.parentNode.clientHeight / 2);
+    var angle_deg = 0;
+
+    for (var i = 0; i < language_names.length; i++) {
+
+        angle_deg += 360 / language_names.length;
+
+        var language =  new languageObject( language_names[i],
+                            all_repos_languages[language_names[i]],
+                            (100 * ((all_repos_languages[language_names[i]]) / total_bytes))
+                        );
+
+        var skill_div = elmnt('div', 'skill_div');
+        var skill_lang = elmnt('span', language.lang);
+        var skill_data = elmnt('span', 'skill_data');
+
+        skill_lang.innerHTML = language.lang + '';
+        skill_data.innerHTML = language.lang_percent + '%';
+
+        skill_data.dataset.bytes = all_repos_languages[language.lang] + ' bytes';
+        skill_data.dataset.percent = language.lang_percent + '%';
+
+        // ISSUE, wait for values to be returned by ajax!!!!!!!!!
+        // animate
+        if (getWindowWidth().x > 900)
+            animateLanguage(skill_div, skill_data, skill_lang, center, language_names, language, angle_deg);
+
+        skill_div.appendChild(skill_lang);
+        skill_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
+        skill_div.appendChild(skill_data);
+        languages_breakdown.appendChild(skill_div);
+    }
+}
+
+function languageObject(lang, lang_bytes, lang_percent) {
+    this.lang = lang;
+    this.lang_bytes = lang_bytes;
+    this.lang_percent = parseFloat(lang_percent, 10).toFixed(2)
+}
+
+function animateLanguage(skill_div, skill_data, skill_lang, center, language_names, language, angle_deg) {
+
+    var cycle = 0;
+
+    setVendorPrefixForTransformOrigin(skill_div, '-150px 0');
+
+    var skill_div_width = language.lang_percent;
+
+    skill_div.style.backgroundColor = language_colors[language.lang];
+
+    function step(timestamp) {
+
+        cycle += 10;
+
+        if (cycle <= 360) { // do for duration
+
+            requestAnimationFrame(step);
+        }
+        else if (cycle <= 720) { // do for duration
+            requestAnimationFrame(step);
+        }
+        else if (cycle <= 1080) { // do for duration
+            setVendorPrefixForTransform(languages_breakdown, 'rotate(' + (cycle - 720) + 'deg)');
+            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.01 * (cycle - 720)) + 'deg)');
+
+            requestAnimationFrame(step);
+        }
+        else if (cycle <= 1440) {
+            skill_div.style.position = 'relative';
+
+            requestAnimationFrame(step);
+        }
+        else if (cycle <= 1600) {
+            skill_div.style.borderRadius = 0;
+            requestAnimationFrame(step);
+        }
+        else if (cycle <= 1800) {
+            requestAnimationFrame(step);
+        }
+        else { // do on stop
+            skill_lang.style.opacity = '1';
+            skill_data.style.opacity = '1';
+            skill_div.style.width = skill_div_width + '%';
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+function switchLanguageDataFormat(event) {
     if (event.target.innerHTML.match(new RegExp('%')))
         event.target.innerHTML = event.target.dataset.bytes;
     else
@@ -552,6 +618,13 @@ function setVendorPrefixForTransform (node, value) {
     node.style.msTransform = value;
     node.style.OTransform = value;
     node.style.transform = value;
+}
+function setVendorPrefixForTransformOrigin (node, value) {
+    node.style.webkitTransformOrigin = value;
+    node.style.MozTransformOrigin = value;
+    node.style.msTransformOrigin = value;
+    node.style.OTransformOrigin = value;
+    node.style.transformOrigin = value;
 }
 
 // create element of type "type" with class "className"
@@ -593,6 +666,11 @@ window.mobilecheck = function() {
   return check;
 }
 
+function Vector(x, y) {
+    this.x = x;
+    this.y = y;
+}
+
 function ajaxCall(api, command, node) {
     var xmlhttp = new XMLHttpRequest();
 
@@ -613,5 +691,3 @@ function ajaxCall(api, command, node) {
     xmlhttp.open("GET", api + command, true);
     xmlhttp.send();
 }
-
-
