@@ -434,7 +434,7 @@ h2 {
     -o-transition: all ease 0.6s;
     transition: all ease 0.6s;
 }
-.info p a:hover {
+.info p a:active {
     background-color: #4ac;
     color: #fff;
     font-weight: bold;
@@ -730,6 +730,11 @@ h2 {
 
     .frame[data-zoom='false']:hover {
         width: 24%;
+    }
+    .info p a:hover {
+        background-color: #4ac;
+        color: #fff;
+        font-weight: bold;
     }
 
     #about_me,
