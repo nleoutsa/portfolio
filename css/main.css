@@ -300,8 +300,7 @@ h2 {
     color: #fff;
 }
 #site_title a:link,
-#site_title a:visited,
-#site_title a:hover {
+#site_title a:visited {
     text-decoration: none;
     color: #333;
     cursor: pointer;
@@ -688,11 +687,12 @@ h2 {
     #site_title #menu_toggle {
         display: none;
     }
-
-    #site_title #menu_toggle:hover {
-        background: #333;
-        color: #fff;
+    #site_title a:hover {
+        text-decoration: none;
+        color: #333;
+        cursor: pointer;
     }
+
     span#designer_title,
     span#job_title {
 
