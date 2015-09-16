@@ -94,8 +94,8 @@ for (var i = 0; i < about_buttons.length; i++) {
 }
 
 menu_toggle.addEventListener('click', function() {
-    if (menu.style.left != '0%') {
-        menu.style.left = '50%';
+    if (menu.style.left != '35%') {
+        menu.style.left = '35%';
         gallery.parentNode.style.left = '-100%';
     }
     else {
