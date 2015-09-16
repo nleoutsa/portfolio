@@ -138,20 +138,24 @@ function createInfoSection(node) {
 
             var language_key = elmnt('span', keys[i]);
             language_key.innerHTML = keys[i] + ': ';
-            language_key.style.color = "#333";
+            language_key.style.opacity = "1";
+
 
             var language_data = elmnt('span', 'language_data');
             language_data.dataset.bytes = number_of_bytes + ' bytes';
             language_data.dataset.percent = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
-            language_data.style.paddingLeft = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%'
+            if (keys[i] == "CoffeeScript")
+                language_data.style.color = "#aaa";
+            else
+                language_data.style.color = "#333";
 
             language_data.innerHTML = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
             language_data.addEventListener('click', function(event) {switchLanguageDataFormat(event);});
 
-            language_div.style.backgroundColor = language_colors[keys[i]];
-            language_div.style.width = (100 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
+            language_data.style.backgroundColor = language_colors[keys[i]];
+            language_data.style.width = (80 * (number_of_bytes / total_bytes)).toFixed(2) + '%';
 
             language_div.appendChild(language_key);
             language_div.appendChild(language_data);
