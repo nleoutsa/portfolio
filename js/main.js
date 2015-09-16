@@ -578,7 +578,7 @@ function animateLanguage(skill_div, skill_data, skill_lang, center, language_nam
         }
         else if (cycle <= 1080) { // do for duration
             setVendorPrefixForTransform(languages_breakdown, 'rotate(' + (cycle - 720) + 'deg)');
-            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.05 * (cycle - 720)) + 'deg)');
+            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.01 * (cycle - 720)) + 'deg)');
             // setVendorPrefixForTransform(skill_div, 'rotate(' + (cycle - 720) + 'deg)');
 
             requestAnimationFrame(step);
