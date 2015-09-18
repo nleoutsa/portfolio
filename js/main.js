@@ -474,7 +474,7 @@ function toggleCategory (event) {
     var tag = event.target.dataset.tag;
 
     if (tag == 'art_categories' || tag == 'painting_categories') {
-        var max_height = tag == 'art_categories' ? '19em' : '11em';
+        var max_height = tag == 'art_categories' ? '21em' : '13em';
 
         var category = document.getElementById(tag);
 
