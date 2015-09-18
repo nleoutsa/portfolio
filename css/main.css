@@ -208,7 +208,6 @@ button {  width: auto; overflow: visible; }
 *******************************************
 */
 
-
 body {
     font-family: "courier new", Courier, monospace;
     font-weight: 100;
@@ -228,11 +227,26 @@ h2 {
     z-index: -99999;
 }
 
-
 #site_container {
     width: 100%;
     height: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+              MENU MOBILE
+*******************************************
+*/
 
 #menu_container {
     width: 100%;
@@ -262,10 +276,10 @@ h2 {
     color: #fff;
 
     left: 100%;
-    -webkit-transition: all ease 0.4s;
-    -moz-transition: all ease 0.4s;
-    -o-transition: all ease 0.4s;
-    transition: all ease 0.4s;
+    -webkit-transition: all ease 0.6s;
+    -moz-transition: all ease 0.6s;
+    -o-transition: all ease 0.6s;
+    transition: all ease 0.6s;
 }
 #menu li p {
     font-size: 1.3em;
@@ -317,6 +331,32 @@ h2 {
     display: none;
 }
 
+#painting_categories,
+#art_categories {
+    max-height: 0;
+    overflow: hidden;
+
+    -webkit-transition: max-height ease 0.6s;
+    -moz-transition: max-height ease 0.6s;
+    transition: max-height ease 0.6s;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+              GALLERY
+*******************************************
+*/
+
 #gallery_container {
     display: table-row;
     height: 100vh;
@@ -326,26 +366,16 @@ h2 {
     position: absolute;
     left: 0%;
 
-    -webkit-transition: all ease 0.4s;
-    -moz-transition: all ease 0.4s;
-    -o-transition: all ease 0.4s;
-    transition: all ease 0.4s;
+    -webkit-transition: all ease 0.6s;
+    -moz-transition: all ease 0.6s;
+    -o-transition: all ease 0.6s;
+    transition: all ease 0.6s;
 }
 #gallery {
     width: 100%;
     height: 100%;
     padding-top: 1.25%;
     margin-top: 53px;
-}
-
-#painting_categories,
-#art_categories {
-    max-height: 0;
-    overflow: hidden;
-
-    -webkit-transition: max-height ease 0.6s;
-    -moz-transition: max-height ease 0.6s;
-    transition: max-height ease 0.6s;
 }
 
 .tag,
@@ -383,6 +413,22 @@ h2 {
 
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+              info sections
+*******************************************
+*/
 
 .info {
     position: relative;
@@ -439,15 +485,7 @@ h2 {
     font-weight: bold;
 }
 
-#about_me,
-#skills,
-#contact {
-    width: 100%;
-    height: 100vh;
-    max-height: 0;
-    overflow: hidden;
-}
-
+/* info section language data */
 .language_div {
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
@@ -457,7 +495,6 @@ h2 {
     display: block;
     white-space: nowrap;
 }
-
 .language_data {
     position: absolute;
     -webkit-user-select: none;
@@ -474,6 +511,31 @@ h2 {
     display: inline-block;
 }
 
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+              DESCRIPTION SECTIONS
+*******************************************
+*/
+
+#about_me,
+#skills,
+#contact {
+    width: 100%;
+    height: 100vh;
+    max-height: 0;
+    overflow: hidden;
+}
+
+/* language specific styles */
 .JavaScript,
 .CSS,
 .HTML,
@@ -487,7 +549,6 @@ h2 {
     color: #333;
 }
 
-
 /* skills section */
 #languages_breakdown_container {
     display: block;
@@ -496,7 +557,6 @@ h2 {
     top: 30%;
     transform: translateY(-50%);
 }
-
 .skill_div {
     font-size: 2em;
     font-weight: bolder;
@@ -510,12 +570,54 @@ h2 {
     line-height: 1.5em;
     box-shadow: -7px 7px 7px rgba(0,0,0,0.7);
 }
-
 .skill_data {
     color: #333;
     padding-left: 70%;
     display: inline-block;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -560,7 +662,36 @@ h2 {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media all and (min-width: 900px) {
+
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+            MENU DESKTOP
+*******************************************
+*/
 
     #menu_container {
         display: table-cell;
@@ -577,7 +708,6 @@ h2 {
 
         color: #fff;
     }
-
 
     #menu {
         left: 0%;
@@ -644,8 +774,6 @@ h2 {
         background-image:         linear-gradient(to right, #fff, #222);
     }
 
-
-
     #site_title {
         text-align: center;
         height: auto;
@@ -678,7 +806,6 @@ h2 {
     #site_title span {
         display: block;
     }
-
     #site_title a:link,
     #site_title a:visited,
     #site_title a:hover {
@@ -686,10 +813,10 @@ h2 {
         text-decoration: none;
         cursor: pointer;
     }
-
     #site_title #menu_toggle {
         display: none;
     }
+
     span#designer_title,
     span#job_title {
 
@@ -699,6 +826,21 @@ h2 {
         display: none;
     }
 
+
+
+
+
+
+
+
+
+
+/*
+*******************************************
+            GALLERY DESKTOP
+*******************************************
+*/
+
     #gallery_container {
         display: table-cell;
         width: 100%;
@@ -707,7 +849,6 @@ h2 {
         left: 0%;
 
     }
-
     #gallery {
 
         max-height: 100%;
@@ -724,15 +865,31 @@ h2 {
     .frame {
         width: 22.25%;
     }
-
     .frame[data-zoom='false']:hover {
         width: 24%;
     }
+
+    /* info sections DESKTOP */
     .info p a:hover {
         background-color: #4ac;
         color: #fff;
         font-weight: bold;
     }
+
+
+
+
+
+
+
+
+
+
+    /*
+    *******************************************
+                DESCRIPTION SECTIONS
+    *******************************************
+    */
 
     #about_me,
     #skills,
@@ -747,7 +904,6 @@ h2 {
         transition: max-height ease 0.5s, height ease 0.5s;
     }
 
-
     h4 {
         padding-left: 1em;
         padding-right: 10%;
@@ -759,6 +915,22 @@ h2 {
         font-weight: normal;
         font-size: 0.7em;
     }
+
+
+
+
+
+
+
+
+
+
+    /*
+    *******************************************
+                SKILLS SECTION
+    *******************************************
+    */
+
     #languages_breakdown_container {
         display: block;
 
@@ -790,7 +962,6 @@ h2 {
     #languages_breakdown {
         display: block;
     }
-
     .skill_div {
         text-align: right;
         padding-right: 1em;
@@ -819,7 +990,6 @@ h2 {
         transition: all ease 1.6s;
     }
 
-
     .JavaScript,
     .CSS,
     .HTML,
@@ -832,6 +1002,46 @@ h2 {
         -o-transition: all ease 1.6s;
         transition: all ease 1.6s;
     }
+
+
+
+
+
+
+
+
+
+
+    /*
+    *******************************************
+                CONTACT SECTION
+    *******************************************
+    */
+
+    .contact_background {
+        /* position vertically */
+
+        background-color: #222;
+        background-image: -webkit-linear-gradient(left, #222, #111);
+        background-image:    -moz-linear-gradient(left, #222, #111);
+        background-image:      -o-linear-gradient(left, #222, #111);
+        background-image:         linear-gradient(to right, #222, #111);
+
+        border-left: 200px solid transparent;
+        border-bottom: 150px solid red;
+        border-top: 10vh solid transparent;
+        border-right: 200px solid transparent;
+
+    }
+
+
+    /*
+    *******************************************
+                ABOUT_ME SECTION
+    *******************************************
+    */
+
+
 
 }
 

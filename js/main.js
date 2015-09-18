@@ -4,6 +4,7 @@
 // VARIABLES
 var stats = document.getElementById('stats');
 var gallery = document.getElementById('gallery');
+var contact_container = document.getElementById('contact');
 
 var zoomed_size = '96.5%';
 
@@ -22,6 +23,26 @@ var menu_toggle = document.getElementById('menu_toggle');
 var menu = document.getElementById('menu');
 
 var git_repos = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////////////////////
 //         FUNCTION CALLS
 //////////////////////////////////////////
@@ -31,10 +52,26 @@ project_data.forEach(function(piece) {
         createFrame(piece);
 });
 
-// clicking my name should bring you to the 'starting gallery'
-// 'starting gallery' is web dev stuff and about section.
-// make about section a frame element fitting into gallery...
-// you can use id to over specify frame styles...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -115,6 +152,27 @@ gallery.parentNode.addEventListener('click', function() {
         gallery.parentNode.style.left = '0%';
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -544,6 +602,62 @@ function showAboutSection (event) {
     if (event.target.dataset.tag == 'skills' && languages_breakdown.innerHTML == '') {
         generateLanguageDataVisual();
     }
+    if (event.target.dataset.tag == 'about_me') {
+        console.log(event.target.dataset.tag);
+        generateAboutMeSection();
+
+    }
+
+    if (event.target.dataset.tag == 'contact' && contact_container.innerHTML == '') {
+        console.log(event.target.dataset.tag);
+        generateContactSection();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function generateAboutMeSection () {
+
+}
+
+function generateContactSection () {
+    var contact_background = elmnt('div', 'contact_background');
+
+    var under_development = elmnt('div');
+    under_development.innerHTML = "Contact Section- UNDER DEVELOPMENT";
+
+    contact_container.appendChild(contact_background);
+    contact_container.appendChild(under_development);
 }
 
 
@@ -595,7 +709,7 @@ function generateLanguageDataVisual () {
         // ISSUE, wait for values to be returned by ajax!!!!!!!!!
         // animate
         if (getWindowWidth().x > 900)
-            animateLanguage(skill_div, skill_data, skill_lang, language_names, language, angle_deg);
+            animateLanguage(skill_div, skill_data, skill_lang, language, angle_deg);
         else {
             setVendorPrefixForTransform(skill_div, 'rotate(' + (angle_deg * 0.05) + 'deg)');
 
@@ -616,13 +730,8 @@ function generateLanguageDataVisual () {
     }
 }
 
-function languageObject(lang, lang_bytes, lang_percent) {
-    this.lang = lang;
-    this.lang_bytes = lang_bytes;
-    this.lang_percent = parseFloat(lang_percent, 10).toFixed(2)
-}
 
-function animateLanguage(skill_div, skill_data, skill_lang, language_names, language, angle_deg) {
+function animateLanguage(skill_div, skill_data, skill_lang, language, angle_deg) {
 
     var cycle = 0;
 
@@ -654,8 +763,9 @@ function animateLanguage(skill_div, skill_data, skill_lang, language_names, lang
             requestAnimationFrame(step);
         }
         else if (cycle <= 1080) { // do for duration
+            skill_div.style.top = '0em';
             setVendorPrefixForTransform(languages_breakdown, 'rotate(' + -(cycle - 720) + 'deg)');
-            setVendorPrefixForTransform(skill_div, 'rotate(' + (1.01 * (cycle - 720) + (angle_deg * 0.05)) + 'deg)');
+            setVendorPrefixForTransform(skill_div, 'rotate(' +  (angle_deg * 0.05) + 'deg)');
 
             requestAnimationFrame(step);
         }
@@ -686,9 +796,35 @@ function switchLanguageDataFormat(event) {
     else
         event.target.innerHTML = event.target.dataset.percent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////////////////////
 //         HELPER FUNCTIONS
 //////////////////////////////////////////
+
+function languageObject(lang, lang_bytes, lang_percent) {
+    this.lang = lang;
+    this.lang_bytes = lang_bytes;
+    this.lang_percent = parseFloat(lang_percent, 10).toFixed(2)
+}
 
 function setVendorPrefixForTransform (node, value) {
     node.style.webkitTransform = value;
@@ -708,7 +844,7 @@ function setVendorPrefixForTransformOrigin (node, value) {
 // create element of type "type" with class "className"
 function elmnt(type, className) {
     var element = document.createElement(type);
-    element.setAttribute('class', className);
+    element.setAttribute('class', className || '');
     return element;
 }
 
