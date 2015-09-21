@@ -95,7 +95,7 @@ window.onresize=function(){
 // add event listeners to art_pieces
 for (var i = 0; i < art_pieces.length; i++) {
     art_pieces[i].addEventListener('click', function(event) {click_artpiece(event);}, false);
-    if (!window.mobilecheck()) {
+    if (getWindowWidth().x > 600) {
         art_pieces[i].addEventListener('mouseover', function(event) {mouseover_artpiece(event);}, false);
         art_pieces[i].addEventListener('mouseout', function(event) {mouseout_artpiece(event);}, false);
     }
@@ -449,17 +449,18 @@ function click_artpiece (event) {
 }
 
 function mouseover_artpiece (event) {
-    for (var i = 0; i < gallery.childNodes.length; i++) {
-        if (    gallery.childNodes[i].nodeType == 1
-            &&  gallery.childNodes[i] != event.target.parentNode
-            &&  gallery.childNodes[i].className != 'info') {
-            gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
-        }
-        else {
-           gallery.childNodes[i].childNodes[1].style.opacity = '';
+    if (!window.mobilecheck()) {
+        for (var i = 0; i < gallery.childNodes.length; i++) {
+            if (    gallery.childNodes[i].nodeType == 1
+                &&  gallery.childNodes[i] != event.target.parentNode
+                &&  gallery.childNodes[i].className != 'info') {
+                gallery.childNodes[i].childNodes[1].style.opacity = '0.35';
+            }
+            else {
+               gallery.childNodes[i].childNodes[1].style.opacity = '';
+            }
         }
     }
-
 }
 
 function mouseout_artpiece (event) {
