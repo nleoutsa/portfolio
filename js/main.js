@@ -95,7 +95,7 @@ window.onresize=function(){
 // add event listeners to art_pieces
 for (var i = 0; i < art_pieces.length; i++) {
     art_pieces[i].addEventListener('click', function(event) {click_artpiece(event);}, false);
-    if (getWindowWidth().x > 600) {
+    if (!window.mobilecheck()) {
         art_pieces[i].addEventListener('mouseover', function(event) {mouseover_artpiece(event);}, false);
         art_pieces[i].addEventListener('mouseout', function(event) {mouseout_artpiece(event);}, false);
     }
@@ -459,6 +459,7 @@ function mouseover_artpiece (event) {
            gallery.childNodes[i].childNodes[1].style.opacity = '';
         }
     }
+
 }
 
 function mouseout_artpiece (event) {

@@ -252,9 +252,9 @@ h2 {
     width: 100%;
     position: fixed;
     z-index: 999;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 3px rgba(0,0,0,0.5);
 
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.95);
     color: #333;
 }
 
@@ -267,7 +267,7 @@ h2 {
     list-style: none;
     margin: 0;
 
-    box-shadow: inset 3px 3px 5px rgba(0,0,0,1);
+    box-shadow: inset 3px 3px 3px rgba(0,0,0,1);
 
     padding-top: 1em;
     padding-left: 1em;
@@ -397,6 +397,7 @@ h2 {
     margin: 1.25%;
 
     box-shadow: -3px 3px 3px rgba(0,0,0,0.4);
+
 }
 
 /* make frames have square aspect ratio */
@@ -568,7 +569,7 @@ h2 {
 
     height: 1.5em;
     line-height: 1.5em;
-    box-shadow: -7px 7px 7px rgba(0,0,0,0.7);
+    box-shadow: -7px 7px 3px rgba(0,0,0,0.7);
 }
 .skill_data {
     color: #333;
@@ -647,8 +648,6 @@ h2 {
     .frame[data-zoom='false']:hover {
         width: 32%;
         margin: 0.5%;
-
-        box-shadow: -4px 4px 4px rgba(0,0,0,0.7);
     }
 
     .info {
@@ -864,9 +863,11 @@ h2 {
 
     .frame {
         width: 22.25%;
+        transform: translateZ(0);
     }
     .frame[data-zoom='false']:hover {
         width: 24%;
+        box-shadow: -4px 4px 3px rgba(0,0,0,0.7);
     }
 
     /* info sections DESKTOP */
@@ -978,7 +979,6 @@ h2 {
         -webkit-backface-visibility: hidden;
     }
     .skill_data {
-        /*opacity: 0;*/
         color: #fff;
         padding-left: 2em;
         position: absolute;
